@@ -1,2 +1,0 @@
-# lppm
-Sistem lppm
