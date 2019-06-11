@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use Yii;
@@ -6,6 +7,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\auth\Auth;
+use common\models\Penelitian;
 
 /**
  * Site controller
@@ -60,7 +63,30 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $penelitian = Penelitian::find()->count();
+        $tahunPenelitian = Penelitian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        
+        $i = 0;
+        foreach($tahunPenelitian as $tahun){
+            // echo $tahun['tahun']."<br>";
+            $tahunP[$i] = $tahun['tahun'];
+            $tp[$tahun['tahun']] = Penelitian::find()->select('tahun')->where(['tahun' => $tahun['tahun']])->count();
+            $cluster[$tahun['tahun']] = Penelitian::find()->with(['cluster'])->select('id_cluster')->where(['tahun' => $tahun['tahun']])->distinct()->all();
+            foreach($cluster[$tahunP[$i]] as $cls){
+                $hitungCluster[$tahun['tahun']][$cls['cluster']['nama_cluster']] = Penelitian::find()->with(['cluster'])->where(['tahun' => $tahun['tahun'], 'id_cluster' => [$cls['cluster']['id_cluster']]])->count();
+            }
+            $i++;
+        }
+        
+        $this->layout = Auth::getrole();
+        return $this->render('index', [
+            'penelitian' => $penelitian,    
+            'tp' => $tp,
+            'tahunP' => $tahunP,
+            'cluster' => $cluster,
+            'hitungCluster'=> $hitungCluster,
+        ]);
+        
     }
 
     /**
@@ -70,6 +96,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
+        $this->layout = 'main-login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

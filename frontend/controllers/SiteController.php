@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use app\models\Penelitian;
 
 /**
  * Site controller
@@ -73,6 +74,36 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Displays grafik.
+     *
+     * @return mixed
+     */
+    public function actionGrafik()
+    {
+        $penelitian = Penelitian::find()->count();
+        $tahunPenelitian = Penelitian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        
+        $i = 0;
+        foreach($tahunPenelitian as $tahun){
+            // echo $tahun['tahun']."<br>";
+            $tahunP[$i] = $tahun['tahun'];
+            $tp[$tahun['tahun']] = Penelitian::find()->select('tahun')->where(['tahun' => $tahun['tahun']])->count();
+            $cluster[$tahun['tahun']] = Penelitian::find()->with(['cluster'])->select('id_cluster')->where(['tahun' => $tahun['tahun']])->distinct()->all();
+            foreach($cluster[$tahunP[$i]] as $cls){
+                $hitungCluster[$tahun['tahun']][$cls['cluster']['nama_cluster']] = Penelitian::find()->with(['cluster'])->where(['tahun' => $tahun['tahun'], 'id_cluster' => [$cls['cluster']['id_cluster']]])->count();
+            }
+            $i++;
+        }
+        return $this->render('grafik', [
+            'penelitian' => $penelitian,    
+            'tp' => $tp,
+            'tahunP' => $tahunP,
+            'cluster' => $cluster,
+            'hitungCluster'=> $hitungCluster,
+        ]);
     }
 
     /**

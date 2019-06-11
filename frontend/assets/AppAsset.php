@@ -10,11 +10,15 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = '@web/themes/minimal/';
     public $css = [
-        'css/site.css',
+        'css/minimal-main.css',
+        'css/theme.css',
+        'css/uikit.min.css',
     ];
     public $js = [
+        'js/uikit.min.js',
+        'js/uikit-icons.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

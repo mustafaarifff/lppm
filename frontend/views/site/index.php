@@ -2,52 +2,40 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Welcome';
 ?>
-<div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+<div class="uk-container uk-text-center">
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    <p data-uk-scrollspy="cls: uk-animation-slide-left; repeat: true; delay: 150" class="uk-margin-remove-bottom tm-overtitle uk-margin-medium-top uk-text-uppercase letter-spacing-l">
+        Selamat Datang Di LPPM UIN Suska Riau
+    </p>
+    <h1 class="uk-h1 uk-margin-small-top uk-margin-medium-bottom uk-heading-line"
+        style="font-family: 'DejaVu Sans Light'" data-uk-scrollspy="cls: uk-animation-slide-right; repeat: true; delay: 150">Silahkan Pilih Buku Yang Dicari</h1>
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+    <div class="uk-light uk-grid-medium uk-child-width-1-3@m uk-grid-small uk-grid-match tm-margin-large-top uk-text-center"
+         data-uk-grid>
+        <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 100">
+            <a href="?r=penelitian/index" class="uk-card uk-card-box uk-card-body uk-border-rounded">
+                    <span class="uk-icon-forder uk-border-rounded">
+                        <span data-uk-icon="icon: mail; ratio: 2"></span></span>
+                <p>Penelitian</p>
+            </a>
         </div>
-
+        <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 150">
+            <a href="#search" data-uk-toggle class="uk-card uk-card-box uk-card-body uk-border-rounded">
+                    <span class="uk-icon-forder uk-border-rounded">
+                        <span data-uk-icon="icon: check; ratio: 2"></span></span>
+                <p>Pengabdian</p>
+            </a>
+        </div>
+        <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 200">
+            <a href="?r=site/lihat" class="uk-card uk-card-box uk-card-body uk-border-rounded">
+                    <span class="uk-icon-forder uk-border-rounded">
+                        <span data-uk-icon="icon: list; ratio: 2"></span></span>
+                <p>Buku, Jurnal & Majalah</p>
+            </a>
+        </div>
     </div>
 </div>
