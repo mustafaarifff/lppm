@@ -26,59 +26,8 @@ AppAssetPage::register($this);
         display: none;
     }
 </style>
-<!-- Page Content -->
-<div class="content">
-    <div class="row" data-toggle="appear">
-        <!-- Row #1 -->
-        <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-right bg-primary" href="javascript:void(0)">
-                <div class="block-content block-content-full clearfix border-black-op-b border-3x">
-                    <div class="float-left mt-10 d-none d-sm-block">
-                        <i class="si si-bar-chart fa-3x text-primary-light"></i>
-                    </div>
-                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="8900">0
-                    </div>
-                    <div class="font-size-sm font-w600 text-uppercase text-white-op">PENGABDIAN</div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-right bg-earth" href="javascript:void(0)">
-                <div class="block-content block-content-full clearfix border-black-op-b border-3x">
-                    <div class="float-left mt-10 d-none d-sm-block">
-                        <i class="si si-trophy fa-3x text-earth-light"></i>
-                    </div>
-                    <div class="font-size-h3 font-w600 text-white"><span data-toggle="countTo" data-speed="1000" data-to="<?= $penelitian ?>">0</span></div>
-                    <div class="font-size-sm font-w600 text-uppercase text-white-op">PENELITIAN</div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-right bg-elegance" href="javascript:void(0)">
-                <div class="block-content block-content-full clearfix border-black-op-b border-3x">
-                    <div class="float-left mt-10 d-none d-sm-block">
-                        <i class="si si-envelope-letter fa-3x text-elegance-light"></i>
-                    </div>
-                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="260">0
-                    </div>
-                    <div class="font-size-sm font-w600 text-uppercase text-white-op">BUKU</div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-xl-3">
-            <a class="block block-link-pop text-right bg-corporate" href="javascript:void(0)">
-                <div class="block-content block-content-full clearfix border-black-op-b border-3x">
-                    <div class="float-left mt-10 d-none d-sm-block">
-                        <i class="si si-fire fa-3x text-corporate-light"></i>
-                    </div>
-                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="4252">0
-                    </div>
-                    <div class="font-size-sm font-w600 text-uppercase text-white-op">MAJALAH & JURNAL</div>
-                </div>
-            </a>
-        </div>
-        <!-- END Row #1 -->
-    </div>
+
+<div class="uk-container uk-text-center">
     <div class="row">
         <div class="col-12 col-xs-3">
             <div class="block-content block-content-full clearfix border-black-op-b border-3x">

@@ -56,6 +56,8 @@ AppAsset::register($this);
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/faq') ?>"><strong>FAQ</strong></a></li>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/contact1') ?>"><strong>Contact</strong></a></li>
                             <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
+                            <!-- <li><a href="<?= Yii::$app->urlManager->createURL('site/grafik') ?>"><strong>Grafik Buku</strong></a></li> -->
+
                         </ul>
 
                     </div>
@@ -107,7 +109,7 @@ AppAsset::register($this);
                     <li><a href="<?= Yii::$app->urlManager->createURL('site/faq') ?>"><strong>FAQ</strong></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createURL('site/contact1') ?>"><strong>Contact</strong></a></li>
                     <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
-                </ul>
+               </ul>
             </div>
             <div class="uk-margin-medium">
                 <div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center uk-grid">
@@ -127,7 +129,7 @@ AppAsset::register($this);
                 </div>
             </div>
             <div class="uk-margin-medium tm-text-xsmall uk-text-meta copyright">
-                Copyright &copy <?= date('Y') ?> by <a href="#">AHMAD FAUZI RAHMAN S.T, M.T.A</a>
+                Copyright &copy <?= date('Y') ?> by <a href="#">LPPM UIN SUSKA RIAU</a>
             </div>
         </div>
     </footer>
@@ -156,7 +158,6 @@ AppAsset::register($this);
                 <li><a href="#"><strong>FAQ</strong></a></li>
                 <li><a href="#"><strong>Contact</strong></a></li>
                 <?= Yii::$app->user->isGuest ? '' : '<li><a href="#"><strong>Outcome</strong></a></li>' ?>
-                
             </ul>
 
         </div>

@@ -13,7 +13,9 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+
 use yii\data\ActiveDataProvider;
+use app\models\Penelitian;
 
 /**
  * Site controller
@@ -78,6 +80,36 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays grafik.
+     *
+     * @return mixed
+     */
+    public function actionGrafik()
+    {
+        $penelitian = Penelitian::find()->count();
+        $tahunPenelitian = Penelitian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        
+        $i = 0;
+        foreach($tahunPenelitian as $tahun){
+            // echo $tahun['tahun']."<br>";
+            $tahunP[$i] = $tahun['tahun'];
+            $tp[$tahun['tahun']] = Penelitian::find()->select('tahun')->where(['tahun' => $tahun['tahun']])->count();
+            $cluster[$tahun['tahun']] = Penelitian::find()->with(['cluster'])->select('id_cluster')->where(['tahun' => $tahun['tahun']])->distinct()->all();
+            foreach($cluster[$tahunP[$i]] as $cls){
+                $hitungCluster[$tahun['tahun']][$cls['cluster']['nama_cluster']] = Penelitian::find()->with(['cluster'])->where(['tahun' => $tahun['tahun'], 'id_cluster' => [$cls['cluster']['id_cluster']]])->count();
+            }
+            $i++;
+        }
+        return $this->render('grafik', [
+            'penelitian' => $penelitian,    
+            'tp' => $tp,
+            'tahunP' => $tahunP,
+            'cluster' => $cluster,
+            'hitungCluster'=> $hitungCluster,
+        ]);
+    }
+
+    /**
      * Logs in a user.
      *
      * @return mixed
@@ -85,14 +117,12 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            // return $this->goHome();
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
-
             // $dataProvider = new ActiveDataProvider([
             //     'query' => Outcome::find(),
             // ]);
@@ -223,13 +253,4 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionPenelitian()
-    {
-        return $this->render('penelitian');
-    }
-
-    // public function actionOutcome()
-    // {
-    //     return $this->render('outcome');
-    // }
 }
