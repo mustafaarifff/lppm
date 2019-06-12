@@ -56,7 +56,7 @@ AppAsset::register($this);
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/faq') ?>"><strong>FAQ</strong></a></li>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/contact1') ?>"><strong>Contact</strong></a></li>
                             <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
-                            <!-- <li><a href="<?= Yii::$app->urlManager->createURL('site/grafik') ?>"><strong>Grafik Buku</strong></a></li> -->
+                            <li><a href="<?= Yii::$app->urlManager->createURL('site/grafik') ?>"><strong>Grafik Buku</strong></a></li>
 
                         </ul>
 

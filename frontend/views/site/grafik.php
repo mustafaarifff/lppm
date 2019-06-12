@@ -1,12 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-use backend\assets\AppAsset;
-use backend\assets\AppAssetPage;
 
 $this->title = 'Dashboard';
-// AppAsset::register($this);
-AppAssetPage::register($this);
+
 ?>
 <style>
     #backButton {
@@ -28,16 +25,8 @@ AppAssetPage::register($this);
 </style>
 
 <div class="uk-container uk-text-center">
-    <div class="row">
-        <div class="col-12 col-xs-3">
-            <div class="block-content block-content-full clearfix border-black-op-b border-3x">
-
-                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-                <button class="btn invisible" id="backButton">< Back</button>
-
-            </div>
-        </div>
-    </div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <button class="btn invisible" id="backButton">< Back</button>
 </div>
 <!-- END Page Content -->
 

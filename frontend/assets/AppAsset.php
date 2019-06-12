@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/uikit.min.js',
         'js/uikit-icons.min.js',
+        "js/canvas.min.js"
     ];
     public $depends = [
         'yii\web\YiiAsset',
