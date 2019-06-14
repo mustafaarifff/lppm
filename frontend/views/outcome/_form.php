@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
             'jn' => 'Jurnal',
             'ps' => 'Prosiding Seminar',
         ],
-        ['prompt' => '- Pilih jenis publikasi -'],
+        ['prompt' => '- Pilih jenis publikasi -', 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded'],
     ); ?>
 
     <?= $form->field($model, 'id_buku')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'judul')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
 
-    <?= $form->field($model, 'jenis_jurnal')->dropDownList($jenisJurnal, ['prompt'=>'-pilih jenis jurnal-'])->label('Jenis Jurnal') ?>
+    <?= $form->field($model, 'jenis_jurnal')->dropDownList($jenisJurnal, ['prompt'=>'-pilih jenis jurnal-', 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded'])->label('Jenis Jurnal') ?>
 
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
 
