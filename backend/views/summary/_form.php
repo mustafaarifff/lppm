@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'judul')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'jenis_jurnal')->dropDownList($jenisJurnal, ['prompt'=>'-pilih jenis jurnal-'])->label('Jenis Jurnal') ?>
+
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'volume')->textInput(['maxlength' => true]) ?>

@@ -10,6 +10,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use app\models\JenisJurnal;
+use yii\helpers\ArrayHelper;
 
 /**
  * OutcomeController implements the CRUD actions for Outcome model.
@@ -90,6 +92,9 @@ class OutcomeController extends Controller
         $model->scenario = 'create';
         $fileName = $model->id_buku;
 
+        $jenisJurnal = JenisJurnal::find()->all();
+        $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
+
         if ($model->load(Yii::$app->request->post())) {
             
             if($model->jenis_file == 'ps'){
@@ -111,6 +116,7 @@ class OutcomeController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'jenisJurnal' => $jenisJurnal,
         ]);
     }
 
@@ -124,6 +130,9 @@ class OutcomeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $jenisJurnal = JenisJurnal::find()->all();
+        $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
+
         $fileLama = $model->file;
         if ($model->load(Yii::$app->request->post())) {
             $model->file = $fileLama;
@@ -138,6 +147,7 @@ class OutcomeController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'jenisJurnal' => $jenisJurnal,
         ]);
     }
 

@@ -35,6 +35,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'judul')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
 
+    <?= $form->field($model, 'jenis_jurnal')->dropDownList($jenisJurnal, ['prompt'=>'-pilih jenis jurnal-'])->label('Jenis Jurnal') ?>
+
     <?= $form->field($model, 'tema')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
 
     <?= $form->field($model, 'volume')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
@@ -112,6 +114,8 @@ use yii\widgets\ActiveForm;
         document.getElementById('outcome-penulis').parentNode.style.display='block';
         document.getElementById('outcome-id_buku').value='<?= (isset($model["id_buku"])) ? $model["id_buku"] : "" ?>';
         document.getElementById('outcome-penulis').value=`<?= (isset($model["penulis"])) ? $model["penulis"] : "" ?>`;
+        document.getElementById('outcome-jenis_jurnal').parentNode.style.display='none';
+        document.getElementById('outcome-jenis_jurnal').value='0';
         document.getElementById('outcome-judul').parentNode.style.display='block';
         document.getElementById('outcome-tema').parentNode.style.display='none';
         document.getElementById('outcome-tema').value='-';
@@ -129,6 +133,8 @@ use yii\widgets\ActiveForm;
         document.getElementById('outcome-id_buku').value='<?= (isset($model["id_buku"])) ? $model["id_buku"] : "" ?>';
         document.getElementById('outcome-penulis').parentNode.style.display='none';
         document.getElementById('outcome-penulis').value='-';
+        document.getElementById('outcome-jenis_jurnal').parentNode.style.display='block';
+        document.getElementById('outcome-jenis_jurnal').value='<?= (isset($model["jenis_jurnal"])) ? $model["jenis_jurnal"] : "" ?>';
         document.getElementById('outcome-judul').parentNode.style.display='block';
         document.getElementById('outcome-tema').parentNode.style.display='block';
         document.getElementById('outcome-volume').parentNode.style.display='block';
@@ -146,6 +152,8 @@ use yii\widgets\ActiveForm;
         document.getElementById('outcome-id_buku').value='<?= (isset($model["id_buku"])) ? $model["id_buku"] : "-" ?>';
         document.getElementById('outcome-penulis').parentNode.style.display='block';
         document.getElementById('outcome-penulis').value=`<?= (isset($model["penulis"])) ? $model["penulis"] : "" ?>`;
+        document.getElementById('outcome-jenis_jurnal').parentNode.style.display='none';
+        document.getElementById('outcome-jenis_jurnal').value='0';
         document.getElementById('outcome-judul').parentNode.style.display='block';
         document.getElementById('outcome-tema').parentNode.style.display='none';
         document.getElementById('outcome-tema').parentNode.style.display='none';
@@ -163,6 +171,7 @@ use yii\widgets\ActiveForm;
     function other(){
         document.getElementById('outcome-id_buku').parentNode.style.display='none';
         document.getElementById('outcome-penulis').parentNode.style.display='none';
+        document.getElementById('outcome-jenis_jurnal').parentNode.style.display='none';
         document.getElementById('outcome-judul').parentNode.style.display='none';
         document.getElementById('outcome-tema').parentNode.style.display='none';
         document.getElementById('outcome-volume').parentNode.style.display='none';

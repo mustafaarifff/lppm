@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\UploadForm;
 use common\models\Rak;
+use common\models\JenisJurnal;
 use yii\helpers\ArrayHelper;
 use common\auth\Auth;
 
@@ -25,14 +26,12 @@ class SummaryController extends Controller
     public function behaviors()
     {
         $this->layout= Auth::getRole();
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+        
+        return Auth::behaviors([
+            'deny' => function ($rule, $action){
+                $this->redirect(['site/login']);
+            },
+        ]);
     }
 
     /**
@@ -90,6 +89,8 @@ class SummaryController extends Controller
 
         $rak = Rak::find()->all();
         $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
+        $jenisJurnal = JenisJurnal::find()->all();
+        $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_buku]);
@@ -98,6 +99,7 @@ class SummaryController extends Controller
         return $this->render('create', [
             'model' => $model,
             'rak' => $rak,
+            'jenisJurnal' => $jenisJurnal,
         ]);
     }
 
@@ -114,6 +116,8 @@ class SummaryController extends Controller
 
         $rak = Rak::find()->all();
         $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
+        $jenisJurnal = JenisJurnal::find()->all();
+        $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_buku]);
@@ -122,6 +126,7 @@ class SummaryController extends Controller
         return $this->render('update', [
             'model' => $model,
             'rak' => $rak,
+            'jenisJurnal' => $jenisJurnal,
         ]);
     }
 

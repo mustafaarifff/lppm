@@ -10,8 +10,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use backend\assets\AppAssetPage;
 
-AppAsset::register($this);
+AppAssetPage::register($this);
+// AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -523,6 +525,10 @@ MAIN CONTENT LAYOUT
                     <li>
                         <a href="?r=cluster/index"><i class="fa fa-file"></i><span
                                     class="sidebar-mini-hide">Data Cluster</span></a>
+                    </li>
+                    <li>
+                        <a href="?r=jenis-jurnal/index"><i class="fa fa-file"></i><span
+                                    class="sidebar-mini-hide">Jenis Jurnal</span></a>
                     </li>
                 </ul>
                 

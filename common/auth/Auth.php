@@ -14,100 +14,12 @@ class Auth extends AuthAbstract
      * @var array $roles
      */
     protected static $roles = [
-        // untuk admin
-        'admin' => [
-            // user
-            'user.index',
-            'user.create',
-            'user.update',
-            'user.delete',
-            'user.view',
-
-            'users.index',
-            'users.create',
-            'users.update',
-            'users.delete',
-            'users.view',
-
-            'site.index',
-            'site.logout',
-            'site.profile',
-
-            'setting.index',
-            'setting.create',
-            'setting.update',
-            'setting.delete',
-            'setting.view',
-		
-					
-            'jenissurat.index',
-            'jenissurat.create',
-            'jenissurat.update',
-            'jenissurat.delete',
-            'jenissurat.view',
-			
-			'kelas.index',
-            'kelas.create',
-            'kelas.update',
-            'kelas.delete',
-            'kelas.view',
-
-			'ruang.index',
-            'ruang.create',
-            'ruang.update',
-            'ruang.delete',
-            'ruang.view',
-
-			'jadwal.index',
-            'jadwal.create',
-            'jadwal.update',
-            'jadwal.delete',
-            'jadwal.view',
-
-			'matakuliah.index',
-            'matakuliah.create',
-            'matakuliah.update',
-            'matakuliah.delete',
-            'matakuliah.view',
-
-			'aktifitas.index',
-            'aktifitas.create',
-            'aktifitas.update',
-            'aktifitas.delete',
-            'aktifitas.view',
-
-			'aktifitas-today.index',
-            'aktifitas-today.create',
-            'aktifitas-today.update',
-            'aktifitas-today.delete',
-            'aktifitas-today.view',
-            'aktifitas-today.createtoday',
-
-            'infografis.index',
-        ],
         'pengabdian_admin' => [
             'pengabdian.index',
             'pengabdian.create',
             'pengabdian.update',
             'pengabdian.view',
             'pengabdian.delete',
-
-
-
-            'aktifitas.index',
-            'aktifitas.create',
-            'aktifitas.update',
-            'aktifitas.delete',
-            'aktifitas.view',
-
-            'aktifitas-today.index',
-            'aktifitas-today.create',
-            'aktifitas-today.update',
-            'aktifitas-today.delete',
-            'aktifitas-today.view',
-            'aktifitas-today.createtoday',
-
-            'infografis.index',
         ],
 
         'penelitian_admin' => [
@@ -116,57 +28,12 @@ class Auth extends AuthAbstract
             'penelitian.update',
             'penelitian.view',
             'penelitian.delete',
-
-
-
-            'aktifitas.index',
-            'aktifitas.create',
-            'aktifitas.update',
-            'aktifitas.delete',
-            'aktifitas.view',
-
-            'aktifitas-today.index',
-            'aktifitas-today.create',
-            'aktifitas-today.update',
-            'aktifitas-today.delete',
-            'aktifitas-today.view',
-            'aktifitas-today.createtoday',
-
-            'infografis.index',
         ],
         'summary_admin' => [
             'summary.index',
             'summary.create',
             'summary.update',
             'summary.view',
-
-
-
-            'aktifitas.index',
-            'aktifitas.create',
-            'aktifitas.update',
-            'aktifitas.delete',
-            'aktifitas.view',
-
-            'aktifitas-today.index',
-            'aktifitas-today.create',
-            'aktifitas-today.update',
-            'aktifitas-today.delete',
-            'aktifitas-today.view',
-            'aktifitas-today.createtoday',
-
-            'infografis.index',
-        ],
-        'mahasiswa' => [
-            'site.index',
-            'site.logout',
-            'site.profile',
-
-            'aktifitas.index',
-//            'aktifitas.create',
-            'aktifitas.update',
-//            'aktifitas.delete',
-            'aktifitas.view',
         ],
     ];
 

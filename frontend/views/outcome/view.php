@@ -40,15 +40,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'template' => function($attribute, $index, $widget){
-            if($attribute['value'] != '-')
-            {
-                return "<tr><th>{$attribute['label']}</th><td>{$attribute['value']}</td></tr>";
+            if($attribute['value'] != '-'){
+                if($attribute['value'] != null){
+                    return "<tr><th>{$attribute['label']}</th><td>{$attribute['value']}</td></tr>";
+                }
             }
         },
         'attributes' => [
             'id_buku',
             'penulis:ntext',
             'judul',
+            'jenisJurnal.nama_jenis_jurnal',
             'tema',
             'volume',
             'edisi',

@@ -26,6 +26,7 @@ AppAssetPage::register($this);
                         <?= $this->render('_form', [
                             'model' => $model,
                             'rak' => $rak,
+                            'jenisJurnal' => $jenisJurnal,
                         ]) ?>
                     </div>
                 </div>
