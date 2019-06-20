@@ -63,7 +63,7 @@ AppAsset::register($this);
                     <div class="uk-navbar-right">
                         <?= Yii::$app->user->isGuest ? Html::a(
                             Yii::t('app',
-                                '<span data-uk-icon="icon: sign-in" title="Sign-In"></span>'
+                                '<span data-uk-icon="icon: sign-in" title="Login"></span>'
                             ),
                             ['site/login'],
                             ['class' => 'uk-navbar-toggle']
@@ -71,7 +71,7 @@ AppAsset::register($this);
                             '<span>'.strtoupper(Yii::$app->user->identity->username).'</span>'.
                             Html::beginForm(['/site/logout'], 'post')
                             . Html::submitButton(
-                                '<span data-uk-icon="icon: sign-out" title="Sign-Out"></span>',
+                                '<span data-uk-icon="icon: sign-out" title="Logout"></span>',
                                 ['class' => 'btn btn-link logout', 'style' => 'color:#fff', 'alt' => 'sign-out']
                             )
                             . Html::endForm()

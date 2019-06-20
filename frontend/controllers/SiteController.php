@@ -16,6 +16,7 @@ use frontend\models\ContactForm;
 
 use yii\data\ActiveDataProvider;
 use app\models\Penelitian;
+// use app\models\User;
 
 /**
  * Site controller
@@ -123,8 +124,9 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
+            // $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
             // $dataProvider = new ActiveDataProvider([
-            //     'query' => Outcome::find(),
+            //     'query' => Outcome::find()->where(['id_buku' => \yii\helpers\Json::decode($user[0]['outcome'])]),
             // ]);
             // return $this->render('//outcome/index', [
             //     'dataProvider' => $dataProvider,

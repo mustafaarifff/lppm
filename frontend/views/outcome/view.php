@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'template' => function($attribute, $index, $widget){
             if($attribute['value'] != '-'){
                 if($attribute['value'] != null){
-                    return "<tr><th>{$attribute['label']}</th><td>{$attribute['value']}</td></tr>";
+                    return "<tr><th>{$attribute['label']}</th><td>".nl2br($attribute['value'])."</td></tr>";
                 }
             }
         },
