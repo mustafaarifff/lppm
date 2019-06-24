@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
         ['prompt' => '- Pilih jenis publikasi -', 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded'],
     ); ?>
 
-    <?= $form->field($model, 'id_buku')->textInput(['maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
+    <?= $form->field($model, 'id_buku')->textInput(['readonly' => !$model->isNewRecord,'maxlength' => true, 'class' => 'uk-input uk-form-large tm-form-xlarge uk-border-rounded']) ?>
 
     <?= $form->field($model, 'penulis')->textarea(['rows' => 6, 'class' => 'uk-textarea uk-form-large tm-form-xlarge uk-border-rounded']) ?>
 

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\Outcome;
+use frontend\models\OutcomeSearch;
 use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -41,14 +42,17 @@ class OutcomeController extends Controller
      */
     public function actionIndex()
     {
-        $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
-        $query = Outcome::find()->where(['id_buku' => \yii\helpers\Json::decode($user[0]['outcome'])]);
+        $searchModel = new OutcomeSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
+        // $query = Outcome::find()->where(['id_buku' => \yii\helpers\Json::decode($user[0]['outcome'])]);
         
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        // $dataProvider = new ActiveDataProvider([
+        //     'query' => $query,
+        // ]);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -65,21 +69,6 @@ class OutcomeController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-
-    // public function actionUpload()
-    // {
-    //     $model = new Outcome();
-
-    //     if (Yii::$app->request->isPost) {
-    //         $model->file = UploadedFile::getInstance($model, 'file');
-
-    //         if ($model->file && $model->validate()) {                
-    //             $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
-    //         }
-    //     }
-
-    //     return $this->render('upload', ['model' => $model]);
-    // }
 
     /**
      * Creates a new Outcome model.
@@ -98,7 +87,7 @@ class OutcomeController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             
             if($model->jenis_file == 'ps'){
-                $model->id_buku = 'ps-' .Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+                $model->id_buku = 'PS' .Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
             }
             
             $file = UploadedFile::getInstance($model, 'file');

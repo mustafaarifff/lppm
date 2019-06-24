@@ -52,10 +52,10 @@ AppAsset::register($this);
                     <div class="uk-navbar-center uk-visible@m">
 
                         <ul class="uk-navbar-nav">
-                            <li><a href="<?= Yii::$app->urlManager->createURL('site/about') ?>"><strong>About</strong></a></li>
-                            <li><a href="<?= Yii::$app->urlManager->createURL('site/contact') ?>"><strong>Contact</strong></a></li>
                             <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/grafik') ?>"><strong>Grafik Buku</strong></a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createURL('site/contact') ?>"><strong>Contact</strong></a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createURL('site/about') ?>"><strong>About</strong></a></li>
 
                         </ul>
 
@@ -104,10 +104,9 @@ AppAsset::register($this);
         <div class="uk-container">
             <div>
                 <ul class="uk-subnav uk-flex-center">
-                    <li><a href="<?= Yii::$app->urlManager->createURL('site/syarat') ?>"><strong>Syarat & Ketentuan</strong></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createURL('site/faq') ?>"><strong>FAQ</strong></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createURL('site/contact1') ?>"><strong>Contact</strong></a></li>
                     <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
+                    <li><a href="<?= Yii::$app->urlManager->createURL('site/contact1') ?>"><strong>Contact</strong></a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createURL('site/about') ?>"><strong>About</strong></a></li>
                </ul>
             </div>
             <div class="uk-margin-medium">
@@ -153,10 +152,8 @@ AppAsset::register($this);
 
             <ul class="uk-nav uk-nav-default">
                 <li class="uk-nav-header uk-logo">Menu</li>
-                <li><a href="#"><strong>Syarat & Ketentuan</strong></a></li>
-                <li><a href="#"><strong>FAQ</strong></a></li>
-                <li><a href="#"><strong>Contact</strong></a></li>
                 <?= Yii::$app->user->isGuest ? '' : '<li><a href="#"><strong>Outcome</strong></a></li>' ?>
+                <li><a href="#"><strong>Contact</strong></a></li>
             </ul>
 
         </div>
