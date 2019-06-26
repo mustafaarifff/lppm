@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2019 at 07:43 PM
+-- Generation Time: Jun 26, 2019 at 10:22 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `lppm2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buku`
+--
+
+CREATE TABLE `buku` (
+  `isbn` varchar(20) NOT NULL,
+  `judul_buku` varchar(255) NOT NULL,
+  `penulis` text NOT NULL,
+  `tahun` year(4) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `id_rak` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `buku`
+--
+
+INSERT INTO `buku` (`isbn`, `judul_buku`, `penulis`, `tahun`, `stok`, `id_rak`) VALUES
+('2010-10291', 'judul', 'penulis ', 2011, 4, 2),
+('201021', 'judul buku', 'penulis buku', 2012, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -106,8 +129,6 @@ CREATE TABLE `jenis_jurnal` (
 --
 
 INSERT INTO `jenis_jurnal` (`id`, `nama_jenis_jurnal`) VALUES
-(1, 'OJS (Open Journal System)'),
-(2, 'Non OJS'),
 (3, 'Internasional Bereputasi Q1'),
 (4, 'Internasional Bereputasi Q2'),
 (5, 'Internasional Bereputasi Q3'),
@@ -120,6 +141,33 @@ INSERT INTO `jenis_jurnal` (`id`, `nama_jenis_jurnal`) VALUES
 (12, 'Nasional Terakreditasi Sinta 5'),
 (13, 'Nasional Terakreditasi Sinta 6'),
 (14, 'Nasional');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jurnal`
+--
+
+CREATE TABLE `jurnal` (
+  `id` int(11) NOT NULL,
+  `issn` varchar(20) NOT NULL,
+  `penulis` text NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `tema` varchar(255) NOT NULL,
+  `volume` varchar(6) NOT NULL,
+  `nomor` varchar(6) NOT NULL,
+  `tahun` year(4) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `keterangan` text NOT NULL,
+  `id_rak` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jurnal`
+--
+
+INSERT INTO `jurnal` (`id`, `issn`, `penulis`, `judul`, `tema`, `volume`, `nomor`, `tahun`, `stok`, `keterangan`, `id_rak`) VALUES
+(1, 'jurnal', 'penulis', 'judul', 'tema', 'volum', 'nomor', 2012, 3, 'keterangan', 4);
 
 -- --------------------------------------------------------
 
@@ -751,20 +799,14 @@ CREATE TABLE `summary` (
 --
 
 INSERT INTO `summary` (`id_buku`, `penulis`, `judul`, `jenis_jurnal`, `tema`, `volume`, `edisi`, `id_rak`, `tahun`, `stok`, `file`) VALUES
-('-', 'wdqfqwfq', 'qwffqfwqfqw', 7, '-', '-', '-', 3, 2012, 0, ''),
-('12134', '1', '1', NULL, '1', '1', '1', 1, 2010, 5, ''),
-('124124', 'penulis', 'judul', NULL, 'tema', '1', '1', 1, 2001, 15, ''),
-('12412412', 'penulis 1\r\npenulis 2', 'judul judul', NULL, 'tema tema', '1', '1', 2, 2019, 5, 'ktm.jpg'),
 ('1312412', 'fsefse', 'sdfs', 11, 'wewe', '1', '2', 1, 2010, 2, ''),
+('1412-1034', '-', 'ANALISIS', 3, 'PROSPEK TEKNOLOGI INFORMASI TERHADAP POLA PEMBELAJARAN PENDIDIKAN AGAMA ISLAM', '5', '1', 0, 2005, 0, '1412-1034.pdf'),
 ('2213-2134-32', 'penulis 1\r\npenulis 2', 'qwerty', NULL, '-', '-', '-', 0, 2017, 0, '2213-2134-32.pdf'),
-('22131232134', 'penulis 123', 'saddasdaf', 2, 'tema', 'volum', 'edisi', 2, 2011, 2, ''),
-('2231-1123-23', '-', 'judul jurnal 123', 14, 'nasional', '1', '1', 0, 2011, 0, '2231-1123-23.pdf'),
 ('225235', '432434', 'e', NULL, 'q1', '1', '1', 1, 2001, 1, ''),
 ('2344', 'ewflewn', 'kjren', NULL, '1', '1', '1', 1, 2001, 1, ''),
 ('324', 'jfj', 'jkfn', NULL, '1', '1', '1', 1, 2010, 5, ''),
-('324230123', '-', 'judluadsdas', 2, 'international', '12', '1', 0, 2013, 0, '324230123.pdf'),
 ('34234', 'sgsrgsr', 'ssgg', NULL, 'rgrg', '1', '1', 1, 2010, 5, ''),
-('9941-2331-21', 'penulis 1\r\npenulis 2', 'jdul judul', NULL, '-', '-', '-', 0, 2018, 0, '9941-2331-21.pdf'),
+('979-3757-50-7', 'HUSNI THAMRIN (ed.)', 'DINAMIKA SOSIAL KEAGAMAAN', NULL, '-', '-', '-', 0, 2007, 0, '979-3757-50-7.pdf'),
 ('9988-2921-11', 'sdas', 'asda', NULL, 'asdsa', 'asdsa', 'asdas', 2, 2010, 20, ''),
 ('9988-2921-12', 'AYIP', 'Suatu cerita', NULL, 'mantab', '1', 'ew1', 6, 2011, 25, ''),
 ('fefwew39', '3rr3t\r\newgg', 'jdudl', NULL, '1', '1', '1', 1, 2002, 10, 'new 1.txt'),
@@ -773,12 +815,10 @@ INSERT INTO `summary` (`id_buku`, `penulis`, `judul`, `jenis_jurnal`, `tema`, `v
 ('ps-1549431949', 'ggrgrgrer', '213ggrgr', NULL, '-', '-', '-', 0, 2014, 0, 'ps-1549431949.pdf'),
 ('ps-1549443636', 'oenusli', 'judul', NULL, '-', '-', '-', 0, 2012, 0, 'ps-1549443636.pdf'),
 ('ps-1549443686', 'dmkkdad', 'jdudal', NULL, '-', '-', '-', 0, 2016, 0, 'ps-1549443686.pdf'),
-('ps-1549455813', 'penulis 1\r\npenulis 2\r\npenulis 3', 'judul judul judul', NULL, '-', '-', '-', 0, 2019, 0, 'ps-1549455813.pdf'),
 ('ps-1551851785', 'zxcvb', 'asdfg', NULL, '-', '-', '-', 0, 2011, 0, 'ps-1551851785.pdf'),
-('ps-1573009698', 'muhammad iqbal', 'judul 1234567', NULL, '-', '-', '-', 0, 2011, 0, 'ps-1573009698.pdf'),
+('ps-1596688817', 'Eko Yuliyanto\r\nFitria Fatichatul Hidayah\r\nEnade Perdana Istyastono\r\nYosef Wijoyo', 'ANALISIS REFLEKSI PADA PEMBELAJARAN: REVIEW REASEARCH', NULL, '-', '-', '-', 0, 2018, 0, 'ps-1596688817.pdf'),
 ('ps1546754461', 'qwrqwfq', '3321fffsdv', NULL, '-', '-', '-', 0, 2012, 0, 'ps1546754461-Sertifikat Kelulusan Belajar Membuat Aplikasi Android untuk Pemula.pdf'),
-('q2323', '2lseng', 'lrgluh', NULL, '1', '1', '1', 1, 2001, 5, ''),
-('qwrqwgg', '3424', '1', NULL, '1', '1', '1', 1, 2001, 1, 'BACA INI TERLEBIH DAHULU.pdf');
+('q2323', '2lseng', 'lrgluh', NULL, '1', '1', '1', 1, 2001, 5, '');
 
 -- --------------------------------------------------------
 
@@ -794,7 +834,7 @@ CREATE TABLE `user` (
   `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` smallint(6) NOT NULL DEFAULT '10',
-  `hak_akses` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `hak_akses` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   `outcome` text COLLATE utf8_unicode_ci
@@ -806,13 +846,19 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `hak_akses`, `created_at`, `updated_at`, `outcome`) VALUES
 (1, 'fauzi', '6NFqFk1JWa6Qlpx8_v0BvO8x3JJjbqEC', '$2y$13$H2Zr5.1YulpUpW5jMIh6FOV73eWWv2AWr8atHiWaN1BaG2gMjkt6.', NULL, 'ahmadfauzirahman99@gmail.com', 10, '', 1553148822, 1553148822, NULL),
-(2, 'arif', 'Tq1N-0rQPy2rvSaZ8yLRT_upG_BJY4xQ', '$2y$13$nRFMbBr09njRgWL3WPbL4euOJZqD/ctDNf6eGA.EwiPVouHgNnpbW', NULL, 'arif@gmail.com', 10, 'penelitian_admin', 1553215915, 1553215915, '[\"324230123\",\"9941-2331-21\",\"ps-1549455813\",\"ps-1573009698\",\"2231-1123-23\"]'),
+(2, 'arif', 'Tq1N-0rQPy2rvSaZ8yLRT_upG_BJY4xQ', '$2y$13$nRFMbBr09njRgWL3WPbL4euOJZqD/ctDNf6eGA.EwiPVouHgNnpbW', NULL, 'arif@gmail.com', 10, 'penelitian_admin', 1553215915, 1553215915, '[\"ps-1596688817\",\"1412-1034\",\"979-3757-50-7\"]'),
 (3, 'izza', 'SmMhlBq5z91FU82ZTK86pYwvYxO459bM', '$2y$13$WfaWrMikKDB9n683I/0.0Oe9MuVYpzyj.WDpjDKYuB1iZhsZfbrJK', NULL, 'izza@gmail.com', 10, 'pengabdian_admin', 1553695064, 1553695064, NULL),
 (4, 'ara', 'XbUcVcdB_tlVup5C2x5NFRYMVIUucBMb', '$2y$13$JY79ISfR5iZ0qW4aCI4H0..1SmvVsgQTRsH0lnHtNvDTCmShHiwn.', NULL, 'ara@gmail.com', 10, 'summary_admin', 1553695082, 1553695082, '[\"ps-1549443686\",\"2213-2134-32\",\"ps-1551851785\"]');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `buku`
+--
+ALTER TABLE `buku`
+  ADD PRIMARY KEY (`isbn`);
 
 --
 -- Indexes for table `cluster`
@@ -830,6 +876,12 @@ ALTER TABLE `fakultas`
 -- Indexes for table `jenis_jurnal`
 --
 ALTER TABLE `jenis_jurnal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jurnal`
+--
+ALTER TABLE `jurnal`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -899,6 +951,12 @@ ALTER TABLE `fakultas`
 --
 ALTER TABLE `jenis_jurnal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `jurnal`
+--
+ALTER TABLE `jurnal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pegawai`

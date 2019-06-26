@@ -34,6 +34,18 @@ class Auth extends AuthAbstract
             'summary.create',
             'summary.update',
             'summary.view',
+
+            'buku.index',
+            'buku.create',
+            'buku.update',
+            'buku.view',
+
+            'jurnal.index',
+            'jurnal.create',
+            'jurnal.update',
+            'jurnal.view',
+
+
         ],
     ];
 

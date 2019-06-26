@@ -538,6 +538,14 @@ MAIN CONTENT LAYOUT
                         <a href="?r=summary/index"><i class="fa fa-list-alt"></i><span
                                     class="sidebar-mini-hide">Pustaka (B/M/J)</span></a>
                     </li>
+                    <li>
+                        <a href="?r=buku/index"><i class="fa fa-list-alt"></i><span
+                                    class="sidebar-mini-hide">Buku</span></a>
+                    </li>
+                    <li>
+                        <a href="?r=jurnal/index"><i class="fa fa-list-alt"></i><span
+                                    class="sidebar-mini-hide">Jurnal</span></a>
+                    </li>
 
 
                 </ul>
