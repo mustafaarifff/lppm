@@ -5,16 +5,16 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Outcome */
-
+$jenisFile = null;
 if(substr($model->file,0,3) == 'ps-'){
-    $jenisFile = "Prosiding Seminar";
+    $jenisFile = "Prosiding Seminar : ";
 } else if($model->volume == '-'){
-    $jenisFile = "Buku";
+    $jenisFile = "Buku : ";
 } else if($model->penulis == '-'){
-    $jenisFile = "Jurnal";
+    $jenisFile = "Jurnal : ";
 }
 
-$this->title = $jenisFile . ' : ' .$model->judul;
+$this->title = $jenisFile . $model->judul;
 $this->params['breadcrumbs'][] = ['label' => 'Outcomes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

@@ -44,12 +44,6 @@ class OutcomeController extends Controller
     {
         $searchModel = new OutcomeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        // $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
-        // $query = Outcome::find()->where(['id_buku' => \yii\helpers\Json::decode($user[0]['outcome'])]);
-        
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => $query,
-        // ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -151,6 +145,7 @@ class OutcomeController extends Controller
     {
         if($this->findModel($id)->delete()){
             $this->actionDeleteFromUser($id);
+            Yii::$app->session->setFlash('success', "Berhasil menghapus publikasi");
         }
 
         return $this->redirect(['index']);
