@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'stok',
             //'id_rak',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

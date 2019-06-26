@@ -33,10 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'nomor',
             //'tahun',
             'stok',
-            //'keterangan:ntext',
+            'keterangan:ntext',
             'id_rak',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            // ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
