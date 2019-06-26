@@ -5,16 +5,16 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Outcome */
-
+$jenisFile = null;
 if(substr($model->file,0,3) == 'ps-'){
-    $jenisFile = "Prosiding Seminar";
+    $jenisFile = "Prosiding Seminar : ";
 } else if($model->volume == '-'){
-    $jenisFile = "Buku";
+    $jenisFile = "Buku : ";
 } else if($model->penulis == '-'){
-    $jenisFile = "Jurnal";
+    $jenisFile = "Jurnal : ";
 }
 
-$this->title = $jenisFile . ' : ' .$model->judul;
+$this->title = $jenisFile . $model->judul;
 $this->params['breadcrumbs'][] = ['label' => 'Outcomes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -40,15 +40,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'template' => function($attribute, $index, $widget){
-            if($attribute['value'] != '-')
-            {
-                return "<tr><th>{$attribute['label']}</th><td>{$attribute['value']}</td></tr>";
+            if($attribute['value'] != '-'){
+                if($attribute['value'] != null){
+                    return "<tr><th>{$attribute['label']}</th><td>".nl2br($attribute['value'])."</td></tr>";
+                }
             }
         },
         'attributes' => [
             'id_buku',
             'penulis:ntext',
             'judul',
+            'jenisJurnal.nama_jenis_jurnal',
             'tema',
             'volume',
             'edisi',

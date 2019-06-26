@@ -42,6 +42,7 @@ class Outcome extends \yii\db\ActiveRecord
     {
         return [
             [['id_buku', 'penulis', 'judul', 'volume', 'edisi', 'tahun'], 'required'],
+            [['jenis_jurnal'], 'integer'],
             [['file'], 'required', 'on' =>  'create'],
             [['penulis', 'file'], 'string'],
             [
@@ -69,6 +70,7 @@ class Outcome extends \yii\db\ActiveRecord
             'id_buku' => 'ISBN/ISSN',
             'penulis' => 'Penulis',
             'judul' => 'Judul',
+            'jenis_jurnal' => 'Jenis Jurnal',
             'tema' => 'Tema',
             'volume' => 'Volume',
             'edisi' => 'Edisi',
@@ -77,4 +79,11 @@ class Outcome extends \yii\db\ActiveRecord
         ];
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJenisJurnal()
+    {
+        return $this->hasOne(JenisJurnal::className(), ['id' => 'jenis_jurnal']);
+    }
 }

@@ -4,12 +4,15 @@ namespace frontend\controllers;
 
 use Yii;
 use app\models\Outcome;
+use frontend\models\OutcomeSearch;
 use app\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use app\models\JenisJurnal;
+use yii\helpers\ArrayHelper;
 
 /**
  * OutcomeController implements the CRUD actions for Outcome model.
@@ -39,14 +42,11 @@ class OutcomeController extends Controller
      */
     public function actionIndex()
     {
-        $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
-        $query = Outcome::find()->where(['id_buku' => \yii\helpers\Json::decode($user[0]['outcome'])]);
-        
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        $searchModel = new OutcomeSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -64,21 +64,6 @@ class OutcomeController extends Controller
         ]);
     }
 
-    // public function actionUpload()
-    // {
-    //     $model = new Outcome();
-
-    //     if (Yii::$app->request->isPost) {
-    //         $model->file = UploadedFile::getInstance($model, 'file');
-
-    //         if ($model->file && $model->validate()) {                
-    //             $model->file->saveAs('uploads/' . $model->file->baseName . '.' . $model->file->extension);
-    //         }
-    //     }
-
-    //     return $this->render('upload', ['model' => $model]);
-    // }
-
     /**
      * Creates a new Outcome model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -90,10 +75,13 @@ class OutcomeController extends Controller
         $model->scenario = 'create';
         $fileName = $model->id_buku;
 
+        $jenisJurnal = JenisJurnal::find()->all();
+        $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
+
         if ($model->load(Yii::$app->request->post())) {
             
             if($model->jenis_file == 'ps'){
-                $model->id_buku = 'ps-' .Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+                $model->id_buku = 'PS' .Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
             }
             
             $file = UploadedFile::getInstance($model, 'file');
@@ -111,6 +99,7 @@ class OutcomeController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'jenisJurnal' => $jenisJurnal,
         ]);
     }
 
@@ -124,6 +113,9 @@ class OutcomeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $jenisJurnal = JenisJurnal::find()->all();
+        $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
+
         $fileLama = $model->file;
         if ($model->load(Yii::$app->request->post())) {
             $model->file = $fileLama;
@@ -138,6 +130,7 @@ class OutcomeController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'jenisJurnal' => $jenisJurnal,
         ]);
     }
 
@@ -152,6 +145,7 @@ class OutcomeController extends Controller
     {
         if($this->findModel($id)->delete()){
             $this->actionDeleteFromUser($id);
+            Yii::$app->session->setFlash('success', "Berhasil menghapus publikasi");
         }
 
         return $this->redirect(['index']);

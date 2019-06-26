@@ -21,6 +21,7 @@ class AppAssetPage extends AssetBundle
         "assets/js/codebase.app.min.js",
         "assets/js/plugins/chartjs/Chart.bundle.min.js",
         "assets/js/pages/be_pages_dashboard.min.js",
+        "js/canvas.min.js"
 
     ];
     public $depends = [

@@ -28,14 +28,12 @@ class PenelitianController extends Controller
     public function behaviors()
     {
         $this->layout= Auth::getRole();
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST','GET']
-                ],
-            ],
-        ];
+        
+        return Auth::behaviors([
+            'deny' => function ($rule, $action){
+                $this->redirect(['site/login']);
+            },
+        ]);
     }
     // public function behaviors()
     // {

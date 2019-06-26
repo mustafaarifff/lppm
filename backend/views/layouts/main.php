@@ -513,13 +513,18 @@ MAIN CONTENT LAYOUT
                                     class="sidebar-mini-hide">Data Fakultas</span></a>
                     </li>
                     <li>
-                        <a href="?r=rak/index"><i class="fa fa-list-alt"></i><span
+                        <a href="?r=rak/index"><i class="fa fa-file"></i><span
                                     class="sidebar-mini-hide">Data Rak</span></a>
                     </li>
                     <li>
-                        <a href="?r=cluster/index"><i class="fa fa-list-alt"></i><span
+                        <a href="?r=cluster/index"><i class="fa fa-file"></i><span
                                     class="sidebar-mini-hide">Data Cluster</span></a>
                     </li>
+                    <li>
+                        <a href="?r=jenis-jurnal/index"><i class="fa fa-file"></i><span
+                                    class="sidebar-mini-hide">Jenis Jurnal</span></a>
+                    </li>
+                    
                     <li class="nav-main-heading"><span class="sidebar-mini-visible">MD</span><span class="sidebar-mini-hidden">Modul</span></li>
 
                     <li>
