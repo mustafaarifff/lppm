@@ -74,9 +74,9 @@ AppAssetPage::register($this);
                                         'update' => function ($url, $model, $key) {     // render your custom button
                                             return "<a class='btn btn-lg btn-circle btn-alt-warning mr-5 mb-5' href='" . \yii\helpers\Url::to(['penelitian/update', 'id' => $model->no_sk]) . "'><span class='fa fa-pencil'></span></a>";
                                         },
-                                        'delete' => function ($url, $model, $key) {     // render your custom button
-                                            return "<a class='btn btn-lg btn-circle btn-alt-primary mr-5 mb-5' href='" . \yii\helpers\Url::to(['penelitian/delete', 'id' => $model->no_sk]) . "'><span class='fa fa-trash'></span></a>";
-                                        }
+                                        // 'delete' => function ($url, $model, $key) {     // render your custom button
+                                        //     return "<a class='btn btn-lg btn-circle btn-alt-primary mr-5 mb-5' href='" . \yii\helpers\Url::to(['penelitian/delete', 'id' => $model->no_sk]) . "'><span class='fa fa-trash'></span></a>";
+                                        // }
                                     ],
                                     'contentOptions' => ['style' => 'width: 165px;'],
 

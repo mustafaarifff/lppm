@@ -76,7 +76,7 @@ AppAsset::register($this);
                             )
                             . Html::endForm()
                         ) ?>
-                        <a class="uk-navbar-toggle " href="#search" data-uk-search-icon data-uk-toggle></a>
+                        <!-- <a class="uk-navbar-toggle " href="#search" data-uk-search-icon data-uk-toggle></a> -->
                         <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-navbar-toggle-icon
                            data-uk-toggle></a>
                     </div>
