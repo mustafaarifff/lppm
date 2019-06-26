@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\auth\Auth;
+use common\models\Rak;
+use yii\helpers\ArrayHelper;
 
 /**
  * JurnalController implements the CRUD actions for Jurnal model.
@@ -37,10 +39,14 @@ class JurnalController extends Controller
     {
         $searchModel = new JurnalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $rak = Rak::find()->all();
+        $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'rak' => $rak,
         ]);
     }
 
@@ -65,6 +71,9 @@ class JurnalController extends Controller
     public function actionCreate()
     {
         $model = new Jurnal();
+        
+        $rak = Rak::find()->all();
+        $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +81,7 @@ class JurnalController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'rak' => $rak,
         ]);
     }
 
@@ -86,12 +96,16 @@ class JurnalController extends Controller
     {
         $model = $this->findModel($id);
 
+        $rak = Rak::find()->all();
+        $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'rak' => $rak,
         ]);
     }
 

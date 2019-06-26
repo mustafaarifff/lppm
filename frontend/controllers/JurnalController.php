@@ -8,7 +8,8 @@ use app\models\JurnalSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Rak;
+use yii\helpers\ArrayHelper;
 /**
  * JurnalController implements the CRUD actions for Jurnal model.
  */
@@ -38,9 +39,13 @@ class JurnalController extends Controller
         $searchModel = new JurnalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $rak = Rak::find()->all();
+        $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'rak' => $rak,
         ]);
     }
 

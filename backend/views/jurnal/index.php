@@ -33,19 +33,40 @@ AppAssetPage::register($this);
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
 
-                            'id',
+                            //'id',
                             'issn',
                             'penulis:ntext',
                             'judul',
                             'tema',
-                            //'volume',
-                            //'nomor',
-                            //'tahun',
+                            'volume',
+                            'nomor',
+                            'tahun',
                             //'stok',
                             //'keterangan:ntext',
-                            //'id_rak',
+                            [
+                                'label' => 'rak',
+                                'attribute' => 'id_rak',
+                                'value' => 'rak.nama_rak',
+                                'filter' => Html::activedropDownList($searchModel, 'id_rak', $rak ,['class'=>'form-control', 'prompt'=>'-pilih rak-'])
+                            ],
 
-                            ['class' => 'yii\grid\ActionColumn'],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'template' => '{view} {update} {delete} {myButton}',  // the default buttons + your custom button
+                                'buttons' => [
+                                    'view' => function ($url, $model, $key) {     // render your custom button
+                                        return "<a class='btn btn-lg btn-circle btn-alt-danger mr-5 mb-5' href='" . \yii\helpers\Url::to(['jurnal/view', 'id' => $model->id]) . "'><span class='fa fa-list'></span></a>";
+                                    },
+                                    'update' => function ($url, $model, $key) {     // render your custom button
+                                        return "<a class='btn btn-lg btn-circle btn-alt-warning mr-5 mb-5' href='" . \yii\helpers\Url::to(['jurnal/update', 'id' => $model->id]) . "'><span class='fa fa-pencil'></span></a>";
+                                    },
+                                    'delete' => function ($url, $model, $key) {     // render your custom button
+                                        return "<a class='btn btn-lg btn-circle btn-alt-primary mr-5 mb-5' href='" . \yii\helpers\Url::to(['jurnal/delete', 'id' => $model->id]) . "'><span class='fa fa-trash'></span></a>";
+                                    }
+                                ],
+                                'contentOptions' => ['style' => 'width: 165px;'],
+
+                            ],
                         ],
                     ]); ?>
                     <?php Pjax::end(); ?>

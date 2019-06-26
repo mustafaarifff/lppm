@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'keterangan')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'id_rak')->textInput() ?>
+    <?= $form->field($model, 'id_rak')->dropDownList($rak, ['prompt'=>'-pilih rak-'])->label('Rak') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

@@ -40,7 +40,7 @@ AppAssetPage::register($this);
                                 'penulis:ntext',
                                 'tahun',
                                 'stok',
-                                'id_rak',
+                                'rak.nama_rak',
                             ],
                         ]) ?>
 

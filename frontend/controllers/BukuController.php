@@ -8,7 +8,8 @@ use app\models\BukuSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Rak;
+use yii\helpers\ArrayHelper;
 /**
  * BukuController implements the CRUD actions for Buku model.
  */
@@ -37,10 +38,14 @@ class BukuController extends Controller
     {
         $searchModel = new BukuSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $rak = Rak::find()->all();
+        $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'rak' => $rak,
         ]);
     }
 

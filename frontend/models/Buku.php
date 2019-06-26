@@ -54,4 +54,11 @@ class Buku extends \yii\db\ActiveRecord
             'id_rak' => 'Id Rak',
         ];
     }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRak()
+    {
+        return $this->hasOne(Rak::className(), ['id_rak' => 'id_rak']);
+    }
 }

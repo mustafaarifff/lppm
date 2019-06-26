@@ -13,6 +13,7 @@ use Yii;
  * @property string $tahun
  * @property int $stok
  * @property int $id_rak
+ * @property Rak $rak
  */
 class Buku extends \yii\db\ActiveRecord
 {
@@ -52,5 +53,12 @@ class Buku extends \yii\db\ActiveRecord
             'stok' => 'Stok',
             'id_rak' => 'Id Rak',
         ];
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRak()
+    {
+        return $this->hasOne(Rak::className(), ['id_rak' => 'id_rak']);
     }
 }

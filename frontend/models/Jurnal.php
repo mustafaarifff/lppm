@@ -61,7 +61,14 @@ class Jurnal extends \yii\db\ActiveRecord
             'tahun' => 'Tahun',
             'stok' => 'Stok',
             'keterangan' => 'Keterangan',
-            'id_rak' => 'Id Rak',
+            'id_rak' => 'Rak',
         ];
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRak()
+    {
+        return $this->hasOne(Rak::className(), ['id_rak' => 'id_rak']);
     }
 }
