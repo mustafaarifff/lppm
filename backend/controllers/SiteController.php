@@ -9,6 +9,8 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\auth\Auth;
 use common\models\Penelitian;
+use common\models\Buku;
+use common\models\Jurnal;
 
 /**
  * Site controller
@@ -64,7 +66,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $penelitian = Penelitian::find()->count();
+        $buku = Buku::find()->count();
+        $jurnal = Jurnal::find()->count();
         $tahunPenelitian = Penelitian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        $tahunBuku = Buku::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        $tahunJurnal = Jurnal::find()->select('tahun')->distinct()->orderBy('tahun')->all();
         
         $i = 0;
         foreach($tahunPenelitian as $tahun){
@@ -78,6 +84,19 @@ class SiteController extends Controller
             $i++;
         }
         
+        $b = 0;
+        foreach($tahunBuku as $thnbuku){
+            $tahunB[$b] = $thnbuku['tahun'];
+            $tb[$thnbuku['tahun']] = Buku::find()->select('tahun')->where(['tahun'=>$thnbuku['tahun']])->count();
+            $b++;
+        }
+        $j = 0;
+        foreach($tahunJurnal as $thnjurnal){
+            $tahunJ[$j] = $thnjurnal['tahun'];
+            $tj[$thnjurnal['tahun']] = Jurnal::find()->select('tahun')->where(['tahun'=>$thnjurnal['tahun']])->count();
+            $j++;
+        }
+
         $this->layout = Auth::getrole();
         return $this->render('index', [
             'penelitian' => $penelitian,    
@@ -85,7 +104,16 @@ class SiteController extends Controller
             'tahunP' => $tahunP,
             'cluster' => $cluster,
             'hitungCluster'=> $hitungCluster,
-        ]);
+
+            'buku'      =>  $buku,
+            'tb'        =>  $tb,
+            'tahunB'    =>  $tahunB,
+
+            'jurnal'    =>  $jurnal,
+            'tj'        =>  $tj,
+            'tahunJ'    =>  $tahunJ,
+
+            ]);
         
     }
 

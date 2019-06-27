@@ -59,7 +59,7 @@ AppAssetPage::register($this);
                     <div class="float-left mt-10 d-none d-sm-block">
                         <i class="si si-envelope-letter fa-3x text-elegance-light"></i>
                     </div>
-                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="260">0
+                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="<?= $buku ?>">0
                     </div>
                     <div class="font-size-sm font-w600 text-uppercase text-white-op">BUKU</div>
                 </div>
@@ -71,9 +71,9 @@ AppAssetPage::register($this);
                     <div class="float-left mt-10 d-none d-sm-block">
                         <i class="si si-fire fa-3x text-corporate-light"></i>
                     </div>
-                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="4252">0
+                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="<?= $jurnal ?>">0
                     </div>
-                    <div class="font-size-sm font-w600 text-uppercase text-white-op">MAJALAH & JURNAL</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-white-op">JURNAL</div>
                 </div>
             </a>
         </div>
@@ -118,6 +118,16 @@ AppAssetPage::register($this);
                         y: 30,
                         name: "Pengabdian",
                         color: "#546BC1"
+                    },
+                    {
+                        y: <?= $buku?>,
+                        name: "Buku",
+                        color: "#c537db"
+                    },
+                    {
+                        y: <?= $jurnal?>,
+                        name: "Jurnal",
+                        color: "#2facb2"
                     }
                 ]
             }],
@@ -154,6 +164,40 @@ AppAssetPage::register($this);
                     }
                 ]
             }],
+            "Buku": [{
+                color: "#546BC1",
+                name: "Buku",
+                type: "column",
+                dataPoints: [
+                    <?php
+                        for($i=0; $i<count($tahunB); $i++){
+                    ?>
+                            {
+                                label:"<?= $tahunB[$i] ?>",
+                                y: <?= $tb[$tahunB[$i]] ?>
+                            },
+                    <?php
+                        }
+                    ?>
+                ]
+            }],
+            "Jurnal": [{
+                color: "#546BC1",
+                name: "Jurnal",
+                type: "column",
+                dataPoints: [
+                    <?php
+                        for($i=0; $i<count($tahunJ); $i++){
+                    ?>
+                            {
+                                label:"<?= $tahunJ[$i] ?>",
+                                y: <?= $tj[$tahunJ[$i]] ?>
+                            },
+                    <?php
+                        }
+                    ?>
+                ]
+            }],s
             
             <?php
                 for($i=0; $i<count($tahunP); $i++){

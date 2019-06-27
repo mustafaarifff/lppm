@@ -16,6 +16,8 @@ use frontend\models\ContactForm;
 
 use yii\data\ActiveDataProvider;
 use app\models\Penelitian;
+use app\models\Buku;
+use app\models\Jurnal;
 // use app\models\User;
 
 /**
@@ -89,7 +91,12 @@ class SiteController extends Controller
     {
         $penelitian = Penelitian::find()->count();
         $tahunPenelitian = Penelitian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
-        
+        $buku = Buku::find()->count();
+        $tahunBuku = Buku::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        $jurnal = Jurnal::find()->count();
+        $tahunJurnal =Jurnal::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+
+
         $i = 0;
         foreach($tahunPenelitian as $tahun){
             // echo $tahun['tahun']."<br>";
@@ -101,12 +108,34 @@ class SiteController extends Controller
             }
             $i++;
         }
+        $b = 0;
+        foreach($tahunBuku as $thnbuku){
+            $tahunB[$b] = $thnbuku['tahun'];
+            $tb[$thnbuku['tahun']] = Buku::find()->select('tahun')->where(['tahun'=>$thnbuku['tahun']])->count();
+            $b++;
+        }
+        $j = 0;
+        foreach($tahunJurnal as $thnjurnal){
+            $tahunJ[$j] = $thnjurnal['tahun'];
+            $tj[$thnjurnal['tahun']] = Jurnal::find()->select('tahun')->where(['tahun'=>$thnjurnal['tahun']])->count();
+            $j++;
+        }
+
+
         return $this->render('grafik', [
             'penelitian' => $penelitian,    
             'tp' => $tp,
             'tahunP' => $tahunP,
             'cluster' => $cluster,
             'hitungCluster'=> $hitungCluster,
+
+            'buku'      =>  $buku,
+            'tb'        =>  $tb,
+            'tahunB'    =>  $tahunB,
+
+            'jurnal'    =>  $jurnal,
+            'tj'        =>  $tj,
+            'tahunJ'    =>  $tahunJ,
         ]);
     }
 

@@ -21,7 +21,7 @@ AppAssetPage::register($this);
                     <div class="block-content block-content-full">
                         <h1><?= Html::encode($this->title) ?></h1>
 
-                        <p>
+                        <p> 
                             <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                             <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                                 'class' => 'btn btn-danger',
