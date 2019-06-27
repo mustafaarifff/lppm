@@ -197,7 +197,7 @@ AppAssetPage::register($this);
                         }
                     ?>
                 ]
-            }],s
+            }],
             
             <?php
                 for($i=0; $i<count($tahunP); $i++){
