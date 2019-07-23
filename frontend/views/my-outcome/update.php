@@ -7,12 +7,12 @@ use yii\helpers\Html;
 
 $this->title = 'Update Outcome: ' . $model->judul;
 $this->params['breadcrumbs'][] = ['label' => 'Outcomes', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->judul, 'url' => ['view', 'id' => $model->id_buku]];
+$this->params['breadcrumbs'][] = ['label' => $model->judul, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="outcome-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <?= $this->render('_form', [
         'model' => $model,

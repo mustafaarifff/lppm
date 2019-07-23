@@ -29,7 +29,7 @@ AppAssetPage::register($this);
                         <p>
                             <?= Html::a(Yii::t('app', 'Tambah Penelitian'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
-
+                        
                         <?= GridView::widget([
                             'dataProvider' => $dataProvider,
                             'filterModel' => $searchModel,
@@ -59,7 +59,7 @@ AppAssetPage::register($this);
                                 // 'id_cluster',
                                 // 'id_fakultas',
                                 // 'id_rak',
-                                // 'tahun',
+                                 'tahun',
                                 // 'pendanaan',
                                 // 'sumber_dana',
                                 // 'file:ntext',

@@ -2,14 +2,16 @@
 
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Outcome;
+use app\models\User;
 
 /**
  * OutcomeSearch represents the model behind the search form of `app\models\Outcome`.
  */
-class OutcomeSearch extends Outcome
+class MyOutcomeSearch extends Outcome
 {
     /**
      * {@inheritdoc}
@@ -17,7 +19,7 @@ class OutcomeSearch extends Outcome
     public function rules()
     {
         return [
-            [['id', 'jenis_outcome', 'penulis', 'judul', 'tema', 'volume', 'nomor', 'tahun', 'file'], 'safe'],
+            [['id', 'jenis_outcome','penulis', 'judul', 'tema', 'volume', 'nomor', 'tahun', 'file'], 'safe'],
             [['jenis_jurnal'], 'integer'],
         ];
     }
@@ -40,7 +42,9 @@ class OutcomeSearch extends Outcome
      */
     public function search($params)
     {
-        $query = Outcome::find();
+        $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
+        // $query = Outcome::find();
+        $query = Outcome::find()->where(['id' => \yii\helpers\Json::decode($user[0]['outcome'])]);
 
         // add conditions that should always apply here
 
@@ -63,7 +67,7 @@ class OutcomeSearch extends Outcome
         ]);
 
         $query->andFilterWhere(['like', 'id', $this->id])
-            ->andFilterWhere(['like', 'jenis_outcome', $this->jenis_outcome])
+            ->andFilterWhere(['like', 'jenis_outcome', $this->jenis_outcome])   
             ->andFilterWhere(['like', 'penulis', $this->penulis])
             ->andFilterWhere(['like', 'judul', $this->judul])
             ->andFilterWhere(['like', 'tema', $this->tema])

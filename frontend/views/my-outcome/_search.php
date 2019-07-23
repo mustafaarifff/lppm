@@ -34,17 +34,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'judul') ?>
 
-    <?php // $form->field($model, 'jenis_jurnal') ?>
+    <?php // $form->field($model, 'tema') ?>
 
-    <?php // echo $form->field($model, 'tema') ?>
+    <?php echo $form->field($model, 'tahun') ?>
+    
+    <?php // echo $form->field($model, 'jenis_jurnal') ?>
 
     <?php // echo $form->field($model, 'volume') ?>
 
     <?php // echo $form->field($model, 'nomor') ?>
 
-    <?php  echo $form->field($model, 'tahun') ?>
-
-    <?php // echo $form->field($model, 'file') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

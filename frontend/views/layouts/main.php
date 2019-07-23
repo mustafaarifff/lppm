@@ -52,7 +52,7 @@ AppAsset::register($this);
                     <div class="uk-navbar-center uk-visible@m">
 
                         <ul class="uk-navbar-nav">
-                            <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
+                            <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('my-outcome/index')."'><strong>My Outcome</strong></a></li>" ?>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/grafik') ?>"><strong>Grafik Buku</strong></a></li>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/contact') ?>"><strong>Contact</strong></a></li>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/about') ?>"><strong>About</strong></a></li>
@@ -104,7 +104,7 @@ AppAsset::register($this);
         <div class="uk-container">
             <div>
                 <ul class="uk-subnav uk-flex-center">
-                    <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('outcome/index')."'><strong>Outcome</strong></a></li>" ?>
+                    <?= Yii::$app->user->isGuest ? "" : "<li><a href='".Yii::$app->urlManager->createURL('my-outcome/index')."'><strong>My Outcome</strong></a></li>" ?>
                     <li><a href="<?= Yii::$app->urlManager->createURL('site/contact1') ?>"><strong>Contact</strong></a></li>
                             <li><a href="<?= Yii::$app->urlManager->createURL('site/about') ?>"><strong>About</strong></a></li>
                </ul>

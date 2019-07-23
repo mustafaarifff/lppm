@@ -25,7 +25,7 @@ $this->title = 'Welcome';
             </a>
         </div>
         <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 150">
-            <a href="#search" data-uk-toggle class="uk-card uk-card-box uk-card-body uk-border-rounded">
+            <a href="" data-uk-toggle class="uk-card uk-card-box uk-card-body uk-border-rounded">
                     <span class="uk-icon-forder uk-border-rounded">
                         <span data-uk-icon="icon: check; ratio: 2"></span></span>
                 <p>Pengabdian</p>
@@ -38,11 +38,20 @@ $this->title = 'Welcome';
                 <p>Buku</p>
             </a>
         </div>
+        <br>
         <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 200">
             <a href="?r=jurnal/index" class="uk-card uk-card-box uk-card-body uk-border-rounded">
                     <span class="uk-icon-forder uk-border-rounded">
                         <span data-uk-icon="icon: list; ratio: 2"></span></span>
                 <p>Jurnal</p>
+            </a>
+        </div>
+        <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 200"></div>
+        <div data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true; delay: 200">
+            <a href="?r=outcome/index" class="uk-card uk-card-box uk-card-body uk-border-rounded">
+                    <span class="uk-icon-forder uk-border-rounded">
+                        <span data-uk-icon="icon: album; ratio: 2"></span></span>
+                <p>Outcome</p>
             </a>
         </div>
     </div>

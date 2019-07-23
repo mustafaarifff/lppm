@@ -26,7 +26,7 @@ class Summary extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'summary';
+        return 'outcome';
     }
 
     /**
