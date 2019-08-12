@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2019 at 10:22 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Waktu pembuatan: 12 Agu 2019 pada 18.07
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buku`
+-- Struktur dari tabel `buku`
 --
 
 CREATE TABLE `buku` (
@@ -38,7 +38,7 @@ CREATE TABLE `buku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `buku`
+-- Dumping data untuk tabel `buku`
 --
 
 INSERT INTO `buku` (`isbn`, `judul_buku`, `penulis`, `tahun`, `stok`, `id_rak`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `buku` (`isbn`, `judul_buku`, `penulis`, `tahun`, `stok`, `id_rak`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cluster`
+-- Struktur dari tabel `cluster`
 --
 
 CREATE TABLE `cluster` (
@@ -57,7 +57,7 @@ CREATE TABLE `cluster` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cluster`
+-- Dumping data untuk tabel `cluster`
 --
 
 INSERT INTO `cluster` (`id_cluster`, `nama_cluster`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `cluster` (`id_cluster`, `nama_cluster`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fakultas`
+-- Struktur dari tabel `fakultas`
 --
 
 CREATE TABLE `fakultas` (
@@ -99,7 +99,7 @@ CREATE TABLE `fakultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `fakultas`
+-- Dumping data untuk tabel `fakultas`
 --
 
 INSERT INTO `fakultas` (`id_fakultas`, `nama_fakultas`) VALUES
@@ -116,7 +116,7 @@ INSERT INTO `fakultas` (`id_fakultas`, `nama_fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenis_jurnal`
+-- Struktur dari tabel `jenis_jurnal`
 --
 
 CREATE TABLE `jenis_jurnal` (
@@ -125,7 +125,7 @@ CREATE TABLE `jenis_jurnal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenis_jurnal`
+-- Dumping data untuk tabel `jenis_jurnal`
 --
 
 INSERT INTO `jenis_jurnal` (`id`, `nama_jenis_jurnal`) VALUES
@@ -140,12 +140,13 @@ INSERT INTO `jenis_jurnal` (`id`, `nama_jenis_jurnal`) VALUES
 (11, 'Nasional Terakreditasi Sinta 4'),
 (12, 'Nasional Terakreditasi Sinta 5'),
 (13, 'Nasional Terakreditasi Sinta 6'),
-(14, 'Nasional');
+(14, 'Nasional'),
+(19, 'qwdqwdq');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jurnal`
+-- Struktur dari tabel `jurnal`
 --
 
 CREATE TABLE `jurnal` (
@@ -162,17 +163,10 @@ CREATE TABLE `jurnal` (
   `id_rak` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `jurnal`
---
-
-INSERT INTO `jurnal` (`id`, `issn`, `penulis`, `judul`, `tema`, `volume`, `nomor`, `tahun`, `stok`, `keterangan`, `id_rak`) VALUES
-(1, 'jurnal', 'penulis', 'judul', 'tema', 'volum', 'nomor', 2012, 3, 'keterangan', 4);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migration`
+-- Struktur dari tabel `migration`
 --
 
 CREATE TABLE `migration` (
@@ -181,7 +175,7 @@ CREATE TABLE `migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `migration`
+-- Dumping data untuk tabel `migration`
 --
 
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
@@ -191,7 +185,37 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
+-- Struktur dari tabel `outcome`
+--
+
+CREATE TABLE `outcome` (
+  `id` varchar(20) NOT NULL,
+  `jenis_outcome` enum('Buku','Jurnal','Prosiding Seminar') NOT NULL,
+  `penulis` text NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `jenis_jurnal` int(11) DEFAULT NULL,
+  `tema` varchar(255) DEFAULT NULL,
+  `volume` varchar(6) NOT NULL,
+  `nomor` varchar(6) NOT NULL,
+  `tahun` year(4) NOT NULL,
+  `file` text NOT NULL,
+  `upload_by` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `outcome`
+--
+
+INSERT INTO `outcome` (`id`, `jenis_outcome`, `penulis`, `judul`, `jenis_jurnal`, `tema`, `volume`, `nomor`, `tahun`, `file`, `upload_by`) VALUES
+('1332-0233', 'Jurnal', '-', 'Analisis', 4, 'Islam', '1', '1', 2012, '1332-0233.pdf', 'iqbal'),
+('4430-2214', 'Buku', 'Rofy\r\nArif\r\nDimas', 'Rekaya Perangkat Lunak', NULL, '-', '-', '-', 2018, '4430-2214.pdf', 'rofy'),
+('PS1609982834', 'Prosiding Seminar', 'Rofy', 'Seminar 1 juli', NULL, '-', '-', '-', 2019, 'PS1609982834.pdf', 'rofy'),
+('PS1615000694', 'Prosiding Seminar', 'penulis 1', 'Judul', NULL, '-', '-', '-', 2012, 'PS1615000694.pdf', 'iqbal');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -207,7 +231,7 @@ CREATE TABLE `pegawai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penelitian`
+-- Struktur dari tabel `penelitian`
 --
 
 CREATE TABLE `penelitian` (
@@ -224,7 +248,7 @@ CREATE TABLE `penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `penelitian`
+-- Dumping data untuk tabel `penelitian`
 --
 
 INSERT INTO `penelitian` (`no_sk`, `penulis`, `judul`, `id_cluster`, `id_fakultas`, `id_rak`, `tahun`, `pendanaan`, `sumber_dana`, `file`) VALUES
@@ -727,7 +751,7 @@ INSERT INTO `penelitian` (`no_sk`, `penulis`, `judul`, `id_cluster`, `id_fakulta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengabdian`
+-- Struktur dari tabel `pengabdian`
 --
 
 CREATE TABLE `pengabdian` (
@@ -744,7 +768,7 @@ CREATE TABLE `pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pengabdian`
+-- Dumping data untuk tabel `pengabdian`
 --
 
 INSERT INTO `pengabdian` (`no_sk`, `penulis`, `judul`, `id_cluster`, `id_fakultas`, `id_rak`, `tahun`, `pendanaan`, `sumber_dana`, `file`) VALUES
@@ -754,7 +778,7 @@ INSERT INTO `pengabdian` (`no_sk`, `penulis`, `judul`, `id_cluster`, `id_fakulta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rak`
+-- Struktur dari tabel `rak`
 --
 
 CREATE TABLE `rak` (
@@ -763,7 +787,7 @@ CREATE TABLE `rak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rak`
+-- Dumping data untuk tabel `rak`
 --
 
 INSERT INTO `rak` (`id_rak`, `nama_rak`) VALUES
@@ -777,152 +801,108 @@ INSERT INTO `rak` (`id_rak`, `nama_rak`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `summary`
---
-
-CREATE TABLE `summary` (
-  `id_buku` varchar(20) NOT NULL,
-  `penulis` text NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `jenis_jurnal` int(11) DEFAULT NULL,
-  `tema` varchar(255) DEFAULT NULL,
-  `volume` varchar(6) NOT NULL,
-  `edisi` varchar(6) NOT NULL,
-  `id_rak` int(11) NOT NULL,
-  `tahun` year(4) NOT NULL,
-  `stok` int(11) NOT NULL,
-  `file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `summary`
---
-
-INSERT INTO `summary` (`id_buku`, `penulis`, `judul`, `jenis_jurnal`, `tema`, `volume`, `edisi`, `id_rak`, `tahun`, `stok`, `file`) VALUES
-('1312412', 'fsefse', 'sdfs', 11, 'wewe', '1', '2', 1, 2010, 2, ''),
-('1412-1034', '-', 'ANALISIS', 3, 'PROSPEK TEKNOLOGI INFORMASI TERHADAP POLA PEMBELAJARAN PENDIDIKAN AGAMA ISLAM', '5', '1', 0, 2005, 0, '1412-1034.pdf'),
-('2213-2134-32', 'penulis 1\r\npenulis 2', 'qwerty', NULL, '-', '-', '-', 0, 2017, 0, '2213-2134-32.pdf'),
-('225235', '432434', 'e', NULL, 'q1', '1', '1', 1, 2001, 1, ''),
-('2344', 'ewflewn', 'kjren', NULL, '1', '1', '1', 1, 2001, 1, ''),
-('324', 'jfj', 'jkfn', NULL, '1', '1', '1', 1, 2010, 5, ''),
-('34234', 'sgsrgsr', 'ssgg', NULL, 'rgrg', '1', '1', 1, 2010, 5, ''),
-('979-3757-50-7', 'HUSNI THAMRIN (ed.)', 'DINAMIKA SOSIAL KEAGAMAAN', NULL, '-', '-', '-', 0, 2007, 0, '979-3757-50-7.pdf'),
-('9988-2921-11', 'sdas', 'asda', NULL, 'asdsa', 'asdsa', 'asdas', 2, 2010, 20, ''),
-('9988-2921-12', 'AYIP', 'Suatu cerita', NULL, 'mantab', '1', 'ew1', 6, 2011, 25, ''),
-('fefwew39', '3rr3t\r\newgg', 'jdudl', NULL, '1', '1', '1', 1, 2002, 10, 'new 1.txt'),
-('ps-1549431179', 'dsda2212', '11ffefe', NULL, '-', '-', '-', 0, 2011, 0, 'ps-1549431179.pdf'),
-('ps-1549431368', 'grgrgre', '32ffsg', NULL, '-', '-', '-', 0, 2013, 0, 'ps-1549431368.pdf'),
-('ps-1549431949', 'ggrgrgrer', '213ggrgr', NULL, '-', '-', '-', 0, 2014, 0, 'ps-1549431949.pdf'),
-('ps-1549443636', 'oenusli', 'judul', NULL, '-', '-', '-', 0, 2012, 0, 'ps-1549443636.pdf'),
-('ps-1549443686', 'dmkkdad', 'jdudal', NULL, '-', '-', '-', 0, 2016, 0, 'ps-1549443686.pdf'),
-('ps-1551851785', 'zxcvb', 'asdfg', NULL, '-', '-', '-', 0, 2011, 0, 'ps-1551851785.pdf'),
-('ps-1596688817', 'Eko Yuliyanto\r\nFitria Fatichatul Hidayah\r\nEnade Perdana Istyastono\r\nYosef Wijoyo', 'ANALISIS REFLEKSI PADA PEMBELAJARAN: REVIEW REASEARCH', NULL, '-', '-', '-', 0, 2018, 0, 'ps-1596688817.pdf'),
-('ps1546754461', 'qwrqwfq', '3321fffsdv', NULL, '-', '-', '-', 0, 2012, 0, 'ps1546754461-Sertifikat Kelulusan Belajar Membuat Aplikasi Android untuk Pemula.pdf'),
-('q2323', '2lseng', 'lrgluh', NULL, '1', '1', '1', 1, 2001, 5, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_hash` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` smallint(6) NOT NULL DEFAULT '10',
   `hak_akses` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  `outcome` text COLLATE utf8_unicode_ci
+  `updated_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `hak_akses`, `created_at`, `updated_at`, `outcome`) VALUES
-(1, 'fauzi', '6NFqFk1JWa6Qlpx8_v0BvO8x3JJjbqEC', '$2y$13$H2Zr5.1YulpUpW5jMIh6FOV73eWWv2AWr8atHiWaN1BaG2gMjkt6.', NULL, 'ahmadfauzirahman99@gmail.com', 10, '', 1553148822, 1553148822, NULL),
-(2, 'arif', 'Tq1N-0rQPy2rvSaZ8yLRT_upG_BJY4xQ', '$2y$13$nRFMbBr09njRgWL3WPbL4euOJZqD/ctDNf6eGA.EwiPVouHgNnpbW', NULL, 'arif@gmail.com', 10, 'penelitian_admin', 1553215915, 1553215915, '[\"ps-1596688817\",\"1412-1034\",\"979-3757-50-7\"]'),
-(3, 'izza', 'SmMhlBq5z91FU82ZTK86pYwvYxO459bM', '$2y$13$WfaWrMikKDB9n683I/0.0Oe9MuVYpzyj.WDpjDKYuB1iZhsZfbrJK', NULL, 'izza@gmail.com', 10, 'pengabdian_admin', 1553695064, 1553695064, NULL),
-(4, 'ara', 'XbUcVcdB_tlVup5C2x5NFRYMVIUucBMb', '$2y$13$JY79ISfR5iZ0qW4aCI4H0..1SmvVsgQTRsH0lnHtNvDTCmShHiwn.', NULL, 'ara@gmail.com', 10, 'summary_admin', 1553695082, 1553695082, '[\"ps-1549443686\",\"2213-2134-32\",\"ps-1551851785\"]');
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `hak_akses`, `created_at`, `updated_at`) VALUES
+(1, 'fauzi', '6NFqFk1JWa6Qlpx8_v0BvO8x3JJjbqEC', '$2y$13$H2Zr5.1YulpUpW5jMIh6FOV73eWWv2AWr8atHiWaN1BaG2gMjkt6.', NULL, 'ahmadfauzirahman99@gmail.com', 10, '', 1553148822, 1553148822),
+(2, 'arif', 'Tq1N-0rQPy2rvSaZ8yLRT_upG_BJY4xQ', '$2y$13$nRFMbBr09njRgWL3WPbL4euOJZqD/ctDNf6eGA.EwiPVouHgNnpbW', NULL, 'arif@gmail.com', 10, 'penelitian_admin', 1553215915, 1553215915),
+(3, 'izza', 'SmMhlBq5z91FU82ZTK86pYwvYxO459bM', '$2y$13$WfaWrMikKDB9n683I/0.0Oe9MuVYpzyj.WDpjDKYuB1iZhsZfbrJK', NULL, 'izza@gmail.com', 10, 'pengabdian_admin', 1553695064, 1553695064),
+(4, 'ara', 'XbUcVcdB_tlVup5C2x5NFRYMVIUucBMb', '$2y$13$JY79ISfR5iZ0qW4aCI4H0..1SmvVsgQTRsH0lnHtNvDTCmShHiwn.', NULL, 'ara@gmail.com', 10, 'summary_admin', 1553695082, 1553695082),
+(5, 'iqbal', 'x80hlb0sOSg76JwGVThnYYiXVpJG2aqF', '$2y$13$c1qHJ04BS1RSypZDlYmjpO1TDJqDrbY2ucCWFyilcJsGzeN1SOhNW', NULL, 'iqbal@mail.com', 10, 'dosen', 1553223081, 1553223081),
+(8, 'rofy', 'x80hlb0sOSg76JwGVThnYYiXVpJG2aqF', '$2y$13$c1qHJ04BS1RSypZDlYmjpO1TDJqDrbY2ucCWFyilcJsGzeN1SOhNW', NULL, 'rofy@mail.com', 10, 'dosen', 1553223081, 1553223081),
+(9, 'admin', 'Tq1N-0rQPy2rvSaZ8yLRT_upG_BJY4xQ', '$2y$13$nRFMbBr09njRgWL3WPbL4euOJZqD/ctDNf6eGA.EwiPVouHgNnpbW', NULL, 'admin@gmail.com', 10, 'outcome_admin', 1553215915, 1553215915);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `buku`
+-- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`isbn`);
 
 --
--- Indexes for table `cluster`
+-- Indeks untuk tabel `cluster`
 --
 ALTER TABLE `cluster`
   ADD PRIMARY KEY (`id_cluster`);
 
 --
--- Indexes for table `fakultas`
+-- Indeks untuk tabel `fakultas`
 --
 ALTER TABLE `fakultas`
   ADD PRIMARY KEY (`id_fakultas`);
 
 --
--- Indexes for table `jenis_jurnal`
+-- Indeks untuk tabel `jenis_jurnal`
 --
 ALTER TABLE `jenis_jurnal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jurnal`
+-- Indeks untuk tabel `jurnal`
 --
 ALTER TABLE `jurnal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migration`
+-- Indeks untuk tabel `migration`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
--- Indexes for table `pegawai`
+-- Indeks untuk tabel `outcome`
+--
+ALTER TABLE `outcome`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`),
   ADD KEY `nip` (`nip`);
 
 --
--- Indexes for table `penelitian`
+-- Indeks untuk tabel `penelitian`
 --
 ALTER TABLE `penelitian`
   ADD PRIMARY KEY (`no_sk`);
 
 --
--- Indexes for table `pengabdian`
+-- Indeks untuk tabel `pengabdian`
 --
 ALTER TABLE `pengabdian`
   ADD PRIMARY KEY (`no_sk`);
 
 --
--- Indexes for table `rak`
+-- Indeks untuk tabel `rak`
 --
 ALTER TABLE `rak`
   ADD PRIMARY KEY (`id_rak`);
 
 --
--- Indexes for table `summary`
---
-ALTER TABLE `summary`
-  ADD PRIMARY KEY (`id_buku`);
-
---
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
@@ -931,50 +911,50 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `password_reset_token` (`password_reset_token`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `cluster`
+-- AUTO_INCREMENT untuk tabel `cluster`
 --
 ALTER TABLE `cluster`
   MODIFY `id_cluster` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `fakultas`
+-- AUTO_INCREMENT untuk tabel `fakultas`
 --
 ALTER TABLE `fakultas`
   MODIFY `id_fakultas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `jenis_jurnal`
+-- AUTO_INCREMENT untuk tabel `jenis_jurnal`
 --
 ALTER TABLE `jenis_jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `jurnal`
+-- AUTO_INCREMENT untuk tabel `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pegawai`
+-- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rak`
+-- AUTO_INCREMENT untuk tabel `rak`
 --
 ALTER TABLE `rak`
   MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
