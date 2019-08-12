@@ -106,8 +106,9 @@ class JenisJurnalController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        if($this->findModel($id)->delete()){
+            Yii::$app->session->setFlash('success', "Jenis Jurnal Berhasil Dihapus");
+        }
         return $this->redirect(['index']);
     }
 

@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         },
         'attributes' => [
+            'upload_by',
             'jenis_outcome',
             'id',
             'penulis:ntext',

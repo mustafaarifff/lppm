@@ -8,6 +8,7 @@ use frontend\models\OutcomeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\auth\Auth;
 
 /**
  * OutcomeController implements the CRUD actions for Outcome model.
@@ -19,6 +20,7 @@ class OutcomeController extends Controller
      */
     public function behaviors()
     {
+        $this->layout= Auth::getRole();
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -37,7 +39,7 @@ class OutcomeController extends Controller
     {
         $searchModel = new OutcomeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -1,13 +1,13 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Outcome;
+use common\models\Outcome;
 
 /**
- * OutcomeSearch represents the model behind the search form of `app\models\Outcome`.
+ * OutcomeSearch represents the model behind the search form of `common\models\Outcome`.
  */
 class OutcomeSearch extends Outcome
 {
@@ -69,8 +69,8 @@ class OutcomeSearch extends Outcome
             ->andFilterWhere(['like', 'tema', $this->tema])
             ->andFilterWhere(['like', 'volume', $this->volume])
             ->andFilterWhere(['like', 'nomor', $this->nomor])
-            ->andFilterWhere(['like', 'upload_by', $this->upload_by])
-            ->andFilterWhere(['like', 'file', $this->file]);
+            ->andFilterWhere(['like', 'file', $this->file])
+            ->andFilterWhere(['like', 'upload_by', $this->upload_by]);
 
         return $dataProvider;
     }

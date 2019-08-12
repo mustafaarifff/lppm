@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Rak;
 use yii\helpers\ArrayHelper;
+use frontend\auth\Auth;
 /**
  * JurnalController implements the CRUD actions for Jurnal model.
  */
@@ -20,6 +21,7 @@ class JurnalController extends Controller
      */
     public function behaviors()
     {
+        $this->layout= Auth::getRole();
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),

@@ -17,6 +17,7 @@ use frontend\models\ContactForm;
 use yii\data\ActiveDataProvider;
 use app\models\Penelitian;
 use app\models\User;
+use frontend\auth\Auth;
 
 /**
  * Site controller
@@ -28,6 +29,7 @@ class SiteController extends Controller
      */
     public function behaviors()
     {
+        $this->layout= Auth::getRole();
         return [
             'access' => [
                 'class' => AccessControl::className(),

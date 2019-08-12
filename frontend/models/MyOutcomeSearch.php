@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Outcome;
-use app\models\User;
+// use app\models\User;
 
 /**
  * OutcomeSearch represents the model behind the search form of `app\models\Outcome`.
@@ -42,9 +42,10 @@ class MyOutcomeSearch extends Outcome
      */
     public function search($params)
     {
-        $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
+        // $user = User::find()->select('username')->where(['id' => Yii::$app->user->identity->id])->all();
         // $query = Outcome::find();
-        $query = Outcome::find()->where(['id' => \yii\helpers\Json::decode($user[0]['outcome'])]);
+        // $query = Outcome::find()->where(['id' => \yii\helpers\Json::decode($user[0]['outcome'])]);
+        $query = Outcome::find()->where(['upload_by' => Yii::$app->user->identity->username]);
 
         // add conditions that should always apply here
 
@@ -74,7 +75,8 @@ class MyOutcomeSearch extends Outcome
             ->andFilterWhere(['like', 'volume', $this->volume])
             ->andFilterWhere(['like', 'nomor', $this->nomor])
             ->andFilterWhere(['like', 'file', $this->file]);
-
+        
+            // echo $query->createCommand()->getRawSql();
         return $dataProvider;
     }
 }

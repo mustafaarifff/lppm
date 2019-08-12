@@ -47,6 +47,13 @@ class Auth extends AuthAbstract
 
 
         ],
+        'outcome_admin' => [
+            'outcome.index',
+            'outcome.create',
+            'outcome.update',
+            'outcome.view',
+            'outcome.delete',
+        ]
     ];
 
     private static $controller;

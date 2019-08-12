@@ -16,10 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Outcome', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
@@ -35,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'nomor',
             //'id_rak',
             'tahun',
+            [
+                'attribute' => 'upload_by',
+                'headerOptions' => ['style' => 'width:120px'],
+            ],
             //'stok',
             //'file:ntext',
 

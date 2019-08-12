@@ -43,7 +43,8 @@ AppAssetPage::register($this);
                                     'label' => 'cluster',
                                     'attribute' => 'id_cluster',
                                     'value' => 'cluster.nama_cluster',
-                                    'filter' => Html::activedropDownList($searchModel, 'id_cluster', $cluster ,['class'=>'form-control', 'prompt'=>'-pilih cluster-'])                                ],
+                                    'filter' => Html::activedropDownList($searchModel, 'id_cluster', $cluster ,['class'=>'form-control', 'prompt'=>'-pilih cluster-'])                                
+                                ],
                                 [
                                     'label' => 'fakultas',
                                     'attribute' => 'id_fakultas',

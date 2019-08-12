@@ -1,26 +1,23 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use Yii;
-use app\models\Outcome;
-use frontend\models\MyOutcomeSearch;
-use app\models\User;
-use yii\data\ActiveDataProvider;
+use common\models\Outcome;
+use common\models\OutcomeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
-use app\models\JenisJurnal;
+use common\auth\Auth;
+use common\models\JenisJurnal;
 use yii\helpers\ArrayHelper;
-use frontend\auth\Auth;
+use yii\web\UploadedFile;
 
 /**
  * OutcomeController implements the CRUD actions for Outcome model.
  */
-class MyOutcomeController extends Controller
+class OutcomeController extends Controller
 {
-    
     /**
      * {@inheritdoc}
      */
@@ -35,14 +32,13 @@ class MyOutcomeController extends Controller
         ]);
     }
 
-
     /**
      * Lists all Outcome models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new MyOutcomeSearch();
+        $searchModel = new OutcomeSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -72,8 +68,7 @@ class MyOutcomeController extends Controller
     public function actionCreate()
     {
         $model = new Outcome();
-        $model->scenario = 'create';
-        // $fileName = $model->id;
+        $path = Yii::getAlias('@frontend') .'/web/uploads/';
 
         $jenisJurnal = JenisJurnal::find()->all();
         $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
@@ -90,7 +85,7 @@ class MyOutcomeController extends Controller
             
             if($model->save()){
                 // $this->actionSaveToUser($model->id);
-                $file->saveAs('uploads/' . $model->id . '.' . $file->extension);
+                $file->saveAs($path . $model->id . '.' . $file->extension);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else{
                 // print_r($model->errors);
@@ -116,6 +111,7 @@ class MyOutcomeController extends Controller
         $model = $this->findModel($id);
         $jenisJurnal = JenisJurnal::find()->all();
         $jenisJurnal = ArrayHelper::map($jenisJurnal,'id','nama_jenis_jurnal');
+        $path = Yii::getAlias('@frontend') .'/web/uploads/';
 
         $fileLama = $model->file;
         if ($model->load(Yii::$app->request->post())) {
@@ -123,7 +119,7 @@ class MyOutcomeController extends Controller
             $file = UploadedFile::getInstance($model, 'file');
             if($model->save()){
                 if($file != null){
-                    $file->saveAs('uploads/' . $fileLama);
+                    $file->saveAs($path . $fileLama);
                 }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -145,7 +141,6 @@ class MyOutcomeController extends Controller
     public function actionDelete($id)
     {
         if($this->findModel($id)->delete()){
-            // $this->actionDeleteFromUser($id);
             Yii::$app->session->setFlash('success', "Berhasil menghapus publikasi");
         }
 
@@ -165,41 +160,14 @@ class MyOutcomeController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function actionSaveToUser($id){
-        $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
-        $db_user = User::findOne(Yii::$app->user->identity->id);
-        // var_dump($db_user);
-        // exit;
-        $outcomes[] = \yii\helpers\Json::decode($user[0]['outcome']);
-        $outcome = $outcomes[0];
-        $outcome[] = $id;
-        
-        $db_user->outcome = \yii\helpers\Json::encode($outcome);
-        $db_user->save();
-    }
-
-    public function actionDeleteFromUser($id){
-        $user = User::find()->select('outcome')->where(['id' => Yii::$app->user->identity->id])->all();
-        $db_user = User::findOne(Yii::$app->user->identity->id);
-
-        $outcomes[] = \yii\helpers\Json::decode($user[0]['outcome']);
-        $outcome = $outcomes[0];
-        // print_r($outcome);
-        if (($key = array_search($id, $outcome)) !== false) {
-            unset($outcome[$key]); 
-        }
-        // print_r($outcome);
-        $db_user->outcome = \yii\helpers\Json::encode($outcome);
-        $db_user->save();
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
     public function actionDownload($name) {
-        $path = Yii::getAlias('@webroot') . '/uploads';
-     
+        $path = Yii::getAlias('@frontend') . '/web/uploads';
         $file = $path . '/' . $name;
+        // echo $file;
+        // exit;
      
         if (file_exists($file)) {
      

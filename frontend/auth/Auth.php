@@ -140,9 +140,13 @@ class Auth extends AuthAbstract
     public static function getRole()
     {
 		if(isset(Yii::$app->user->identity->hak_akses)){
-			return Yii::$app->user->identity->hak_akses;
+            if(Yii::$app->user->identity->hak_akses == 'dosen'){
+                return Yii::$app->user->identity->hak_akses;
+            } else {
+                return 'main';
+            }
 		} else {
-			return false;
+			return 'main';
 		}
     }
 

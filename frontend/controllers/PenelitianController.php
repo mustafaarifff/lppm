@@ -15,6 +15,7 @@ use app\models\Cluster;
 use app\models\Fakultas;
 use app\models\Rak;
 use yii\helpers\ArrayHelper;
+use frontend\auth\Auth;
 
 /**
  * PenelitianController implements the CRUD actions for Penelitian model.
@@ -26,6 +27,7 @@ class PenelitianController extends Controller
      */
     public function behaviors()
     {
+        $this->layout= Auth::getRole();
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
