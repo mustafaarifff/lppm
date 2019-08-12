@@ -37,6 +37,7 @@ class Buku extends \yii\db\ActiveRecord
             [['stok', 'id_rak'], 'integer'],
             [['isbn'], 'string', 'max' => 20],
             [['judul_buku'], 'string', 'max' => 255],
+            [['isbn'], 'unique'],
         ];
     }
 

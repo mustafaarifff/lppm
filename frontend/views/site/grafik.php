@@ -56,7 +56,17 @@ $this->title = 'Dashboard';
                         y: 30,
                         name: "Pengabdian",
                         color: "#546BC1"
-                    }
+                    },
+                    {
+                        y: <?= $buku ?>,
+                        name: "Buku",
+                        color: "#c537db"
+                    },
+                    {
+                        y: <?= $jurnal ?>,
+                        name: "Jurnal",
+                        color: "#2facb2"
+                    },
                 ]
             }],
             "Penelitian": [{
@@ -90,6 +100,40 @@ $this->title = 'Dashboard';
                         label: "2016",
                         y: 34400
                     }
+                ]
+            }],
+            "Buku": [{
+                color: "#546BC1",
+                name: "Buku",
+                type: "column",
+                dataPoints: [
+                    <?php
+                        for($i=0; $i<count($tahunB); $i++){
+                    ?>
+                            {
+                                label:"<?= $tahunB[$i] ?>",
+                                y: <?= $tb[$tahunB[$i]] ?>
+                            },
+                    <?php
+                        }
+                    ?>
+                ]
+            }],
+            "Jurnal": [{
+                color: "#546BC1",
+                name: "Jurnal",
+                type: "column",
+                dataPoints: [
+                    <?php
+                        for($i=0; $i<count($tahunJ); $i++){
+                    ?>
+                            {
+                                label:"<?= $tahunJ[$i] ?>",
+                                y: <?= $tj[$tahunJ[$i]] ?>
+                            },
+                    <?php
+                        }
+                    ?>
                 ]
             }],
             
