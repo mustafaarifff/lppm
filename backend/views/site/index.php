@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-use backend\assets\AppAsset;
+// use backend\assets\AppAsset;
 use backend\assets\AppAssetPage;
 
 $this->title = 'Dashboard';
@@ -36,7 +36,7 @@ AppAssetPage::register($this);
                     <div class="float-left mt-10 d-none d-sm-block">
                         <i class="si si-bar-chart fa-3x text-primary-light"></i>
                     </div>
-                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="8900">0
+                    <div class="font-size-h3 font-w600 text-white" data-toggle="countTo" data-speed="1000" data-to="<?= $pengabdian ?>">0
                     </div>
                     <div class="font-size-sm font-w600 text-uppercase text-white-op">PENGABDIAN</div>
                 </div>
@@ -115,7 +115,7 @@ AppAssetPage::register($this);
                         color: "#E7823A"
                     },
                     {
-                        y: 30,
+                        y: <?= $pengabdian ?>,
                         name: "Pengabdian",
                         color: "#546BC1"
                     },
@@ -152,16 +152,21 @@ AppAssetPage::register($this);
             }],
             "Pengabdian": [{
                 color: "#546BC1",
+                click: visitorsChartPengabdianHandler,
+                cursor: "pointer",
                 name: "Pengabdian",
                 type: "column",
-                dataPoints: [{
-                        label: "2015",
-                        y: 22000
-                    },
-                    {
-                        label: "2016",
-                        y: 34400
-                    }
+                dataPoints: [
+                    <?php
+                        for($i=0; $i<count($tahunPb); $i++){
+                    ?>
+                            {
+                                label:"<?= $tahunPb[$i] ?>",
+                                y: <?= $tpb[$tahunPb[$i]] ?>
+                            },
+                    <?php
+                        }
+                    ?>
                 ]
             }],
             "Buku": [{
@@ -202,7 +207,7 @@ AppAssetPage::register($this);
             <?php
                 for($i=0; $i<count($tahunP); $i++){
             ?>
-                    "<?= $tahunP[$i] ?>": [{
+                    "Penelitian <?= $tahunP[$i] ?>": [{
                         color: "#546BC1",
                         name: "<?= $tahunP[$i] ?>",
                         type: "column",
@@ -220,6 +225,28 @@ AppAssetPage::register($this);
                         ]
                     }],
             <?php
+                }
+
+                for($i=0; $i<count($tahunPb); $i++){
+            ?>
+                    "Pengabdian <?= $tahunPb[$i] ?>": [{
+                        color: "#546BC1",
+                        name: "<?= $tahunPb[$i] ?>",
+                        type: "column",
+                        dataPoints: [
+                            <?php
+                                foreach($clusterPb[$tahunPb[$i]] as $cls){
+                            ?>
+                                    {
+                                        label:"<?= $cls['cluster']['nama_cluster'] ?>",
+                                        y: <?= $hitungClusterPb[$tahunPb[$i]][$cls['cluster']['nama_cluster']] ?>
+                                    },
+                            <?php
+                                }
+                            ?>
+                        ]
+                    }],
+                <?php
                 }
             ?>
         };
@@ -241,8 +268,7 @@ AppAssetPage::register($this);
                 fontFamily: "calibri",
                 fontSize: 14,
                 itemTextFormatter: function(e) {
-                    return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / (<?= $penelitian ?> + 30) * 100) + "%";
-                    // return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalVisitors * 100) + "%";
+                    return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / (<?= $penelitian ?> + <?= $pengabdian ?> + <?= $buku ?> + <?= $jurnal ?>) * 100) + "%";
                 }
             },
             data: []
@@ -286,6 +312,25 @@ AppAssetPage::register($this);
             data: []
         };
 
+        var visitorsPengabdianChartOptions = {
+            animationEnabled: true,
+            theme: "light2",
+            axisX: {
+                labelFontColor: "#717171",
+                lineColor: "#a2a2a2",
+                tickColor: "#a2a2a2"
+            },
+            axisY: {
+                gridThickness: 0,
+                includeZero: false,
+                labelFontColor: "#717171",
+                lineColor: "#a2a2a2",
+                tickColor: "#a2a2a2",
+                lineThickness: 1
+            },
+            data: []
+        };
+
         var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
         chart.options.data = visitorsData["Data Penelitian,Pengabdian,Majalah & Buku Uin Suska Riau"];
         chart.render();
@@ -301,29 +346,20 @@ AppAssetPage::register($this);
             $("#backButton").toggleClass("invisible");
         }
 
-
-        // $("#backButton").click(function() {
-        //     $(this).toggleClass("invisible");
-        //     chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
-        //     chart.options.data = visitorsData["Data Penelitian,Pengabdian,Majalah & Buku Uin Suska Riau"];
-        //     chart.render();
-        // });
-
-                
-        // function visitorsChartDrilldownHandler(e) {
-        //     categories.push({category: "total"});
-        //     chart.options.data = visitorsData[e.dataPoint.label];
-        //     chart.options.title = { text: e.dataPoint.label }
-        //     chart.render();
-        //     $("#backButton").toggleClass("invisible");
-        // }
-
         function visitorsChartPenelitianHandler(e) {
             chart = new CanvasJS.Chart("chartContainer", visitorsPenelitianChartOptions);
-            chart.options.data = visitorsData[e.dataPoint.label];
-            chart.options.title = { text: e.dataPoint.label };
+            chart.options.data = visitorsData["Penelitian "+e.dataPoint.label];
+            chart.options.title = { text: "Cluster Penelitian " + e.dataPoint.label };
             chart.render();
             categories.push({category: "Penelitian"})
+        }
+
+        function visitorsChartPengabdianHandler(e) {
+            chart = new CanvasJS.Chart("chartContainer", visitorsPengabdianChartOptions);
+            chart.options.data = visitorsData["Pengabdian "+e.dataPoint.label];
+            chart.options.title = { text: "Cluster Pengabdian " + e.dataPoint.label };
+            chart.render();
+            categories.push({category: "Pengabdian"})
         }
 
         $("#backButton").click(function() { 
@@ -333,7 +369,12 @@ AppAssetPage::register($this);
                 if(categories[categories.length-1].category === "Penelitian") {
                     chart.options.data = visitorsData["Penelitian"];
                     chart.options.title.text = "Penelitian";
-                    chart.options.subtitles[0].text = "Click on dataPoints to drill down";
+                    chart.options.subtitles[0].text = "Silahkan Klik Untuk Memunculkan Drildown";
+                }
+                else if(categories[categories.length-1].category === "Pengabdian") {
+                    chart.options.data = visitorsData["Pengabdian"];
+                    chart.options.title.text = "Pengabdian";
+                    chart.options.subtitles[0].text = "Silahkan Klik Untuk Memunculkan Drildown";
                 }
             }
             else {  
@@ -341,7 +382,7 @@ AppAssetPage::register($this);
                 chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
                 chart.options.data = visitorsData["Data Penelitian,Pengabdian,Majalah & Buku Uin Suska Riau"]; 
                 chart.options.title.text = "Data Penelitian,Pengabdian,Majalah & Buku Uin Suska Riau";
-                chart.options.subtitles[0].text = "Click on dataPoints to drill down";
+                chart.options.subtitles[0].text = "Silahkan Klik Untuk Memunculkan Drildown";
             }
             chart.render();
             categories.pop();

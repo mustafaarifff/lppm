@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\auth\Auth;
 use common\models\Penelitian;
+use common\models\Pengabdian;
 use common\models\Buku;
 use common\models\Jurnal;
 
@@ -66,12 +67,15 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $penelitian = Penelitian::find()->count();
+        $pengabdian = Pengabdian::find()->count();
         $buku = Buku::find()->count();
         $jurnal = Jurnal::find()->count();
         $tahunPenelitian = Penelitian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
+        $tahunPengabdian = Pengabdian::find()->select('tahun')->distinct()->orderBy('tahun')->all();
         $tahunBuku = Buku::find()->select('tahun')->distinct()->orderBy('tahun')->all();
         $tahunJurnal = Jurnal::find()->select('tahun')->distinct()->orderBy('tahun')->all();
-        
+        $tj =null;
+        $tahunJ =null;
         $i = 0;
         foreach($tahunPenelitian as $tahun){
             // echo $tahun['tahun']."<br>";
@@ -84,6 +88,17 @@ class SiteController extends Controller
             $i++;
         }
         
+        $k = 0;
+        foreach($tahunPengabdian as $tahun){
+            $tahunPb[$k] = $tahun['tahun'];
+            $tpb[$tahun['tahun']] = Pengabdian::find()->select('tahun')->where(['tahun' => $tahun['tahun']])->count();
+            $clusterPb[$tahun['tahun']] = Pengabdian::find()->with(['cluster'])->select('id_cluster')->where(['tahun' => $tahun['tahun']])->distinct()->all();
+            foreach($clusterPb[$tahunP[$k]] as $cls){
+                $hitungClusterPb[$tahun['tahun']][$cls['cluster']['nama_cluster']] = Pengabdian::find()->with(['cluster'])->where(['tahun' => $tahun['tahun'], 'id_cluster' => [$cls['cluster']['id_cluster']]])->count();
+            }
+            $k++;
+        }
+
         $b = 0;
         foreach($tahunBuku as $thnbuku){
             $tahunB[$b] = $thnbuku['tahun'];
@@ -104,6 +119,12 @@ class SiteController extends Controller
             'tahunP' => $tahunP,
             'cluster' => $cluster,
             'hitungCluster'=> $hitungCluster,
+
+            'pengabdian' => $pengabdian,    
+            'tpb' => $tpb,
+            'tahunPb' => $tahunPb,
+            'clusterPb' => $clusterPb,
+            'hitungClusterPb'=> $hitungClusterPb,
 
             'buku'      =>  $buku,
             'tb'        =>  $tb,
