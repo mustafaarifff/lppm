@@ -8,6 +8,7 @@ use app\models\PengabdianSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\auth\Auth;
 
 /**
  * PengabdianController implements the CRUD actions for Pengabdian model.
@@ -19,6 +20,7 @@ class PengabdianController extends Controller
      */
     public function behaviors()
     {
+        $this->layout= Auth::getRole();
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
