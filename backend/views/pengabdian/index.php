@@ -61,7 +61,7 @@ AppAssetPage::register($this);
                                 // 'id_cluster',
                                 // 'id_fakultas',
                                 // 'id_rak',
-                                //'tahun',
+                                'tahun',
                                 //'pendanaan',
                                 //'sumber_dana',
                                 //'file:ntext',

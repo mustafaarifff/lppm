@@ -47,15 +47,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Html::activedropDownList($searchModel, 'id_rak', $rak ,['class'=>'form-control', 'prompt'=>'-pilih rak-'])
             ],
             'tahun',
-            // 'id_cluster',
-            // 'id_fakultas',
-            //'id_rak',
-            //'tahun',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {download}',  // the default buttons + your custom button
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {     // render your custom button
+                        return "<a class='btn btn-lg btn-circle btn-alt-danger mr-5 mb-5' title='Lihat' href='" . \yii\helpers\Url::to(['penelitian/view', 'id' => $model->no_sk]) . "'><span class='fa fa-list'></span></a>";
+                    },
+                    // 'download' => function ($url, $model, $key) {     // render your custom button
+                    //     return "<a class='btn btn-lg btn-circle btn-alt-primary mr-5 mb-5' title='Download' href='" . \yii\helpers\Url::to(['outcome/download', 'name' => $model->file]) . "'><span class='fa fa-download'></span></a>";
+                    // },
+                    
+                ],
+                'contentOptions' => ['style' => 'width: 130px;'],
+            
             //'pendanaan',
             //'sumber_dana',
             //'file:ntext',
 
             // ['class' => 'yii\grid\ActionColumn'],
         ],
+    ],
     ]); ?>
 </div>

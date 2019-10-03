@@ -8,6 +8,10 @@ use app\models\PengabdianSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Cluster;
+use app\models\Fakultas;
+use app\models\Rak;
+use yii\helpers\ArrayHelper;
 use frontend\auth\Auth;
 
 /**
@@ -39,10 +43,22 @@ class PengabdianController extends Controller
     {
         $searchModel = new PengabdianSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $cluster = Cluster::find()->all();
+        $cluster = ArrayHelper::map($cluster,'id_cluster','nama_cluster');
+
+        $fakultas = Fakultas::find()->all();
+        $fakultas = ArrayHelper::map($fakultas,'id_fakultas','nama_fakultas');
+
+        $rak = Rak::find()->all();
+        $rak = ArrayHelper::map($rak,'id_rak','nama_rak');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'cluster' => $cluster,
+            'fakultas' => $fakultas,
+            'rak' => $rak,
         ]);
     }
 

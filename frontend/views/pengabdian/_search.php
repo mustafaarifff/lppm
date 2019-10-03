@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Cluster;
+use common\models\Fakultas;
+use common\models\Rak;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\PengabdianSearch */
@@ -24,13 +28,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'judul') ?>
 
-    <?= $form->field($model, 'id_cluster') ?>
+    <?= $form->field($model, 'id_cluster')->dropDownList(
+        ArrayHelper::map(Cluster::find()->all(),'id_cluster','nama_cluster'),['prompt'=>'-pilih cluster-']) ?>
 
-    <?= $form->field($model, 'id_fakultas') ?>
+    <?= $form->field($model, 'id_fakultas')->dropDownList(
+        ArrayHelper::map(Fakultas::find()->all(),'id_fakultas','nama_fakultas'),['prompt'=>'-pilih fakultas-']) ?>
 
-    <?php // echo $form->field($model, 'id_rak') ?>
+    <?= $form->field($model, 'id_rak')->dropDownList(
+        ArrayHelper::map(Rak::find()->all(),'id_rak','nama_rak'),['prompt'=>'-pilih rak-']) ?>
 
-    <?php // echo $form->field($model, 'tahun') ?>
+    <?= $form->field($model, 'tahun') ?>
 
     <?php // echo $form->field($model, 'pendanaan') ?>
 

@@ -46,12 +46,12 @@ class Buku extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'isbn' => 'Isbn',
+            'isbn' => 'ISBN',
             'judul_buku' => 'Judul Buku',
             'penulis' => 'Penulis',
             'tahun' => 'Tahun',
             'stok' => 'Stok',
-            'id_rak' => 'Id Rak',
+            'id_rak' => 'Rak',
         ];
     }
     /**

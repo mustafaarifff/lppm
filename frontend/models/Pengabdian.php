@@ -51,12 +51,12 @@ class Pengabdian extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'no_sk' => 'No Sk',
+            'no_sk' => 'No Surat Pengesahan',
             'penulis' => 'Penulis',
             'judul' => 'Judul',
-            'id_cluster' => 'Id Cluster',
-            'id_fakultas' => 'Id Fakultas',
-            'id_rak' => 'Id Rak',
+            'id_cluster' => 'Cluster',
+            'id_fakultas' => 'Fakultas',
+            'id_rak' => 'Rak',
             'tahun' => 'Tahun',
             'pendanaan' => 'Pendanaan',
             'sumber_dana' => 'Sumber Dana',

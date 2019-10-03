@@ -24,8 +24,8 @@ use yii\widgets\ActiveForm;
             'Jurnal' => 'Jurnal', 
             'Prosiding Seminar' => 'Prosiding Seminar', 
         ], [
-            'prompt' => '- Semua -'],
-        ); 
+            'prompt' => '- Semua -'
+        ]); 
     ?>
 
     <?= $form->field($model, 'id') ?>

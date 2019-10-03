@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\BukuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bukus';
+$this->title = 'Buku';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="buku-index">

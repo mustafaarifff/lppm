@@ -55,7 +55,7 @@ class Pengabdian extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'no_sk' => 'No Sk',
+            'no_sk' => 'No Surat Pengesahan',
             'penulis' => 'Penulis',
             'judul' => 'Judul',
             'id_cluster' => 'Id Cluster',
