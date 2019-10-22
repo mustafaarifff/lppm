@@ -41,4 +41,9 @@ class Fakultas extends \yii\db\ActiveRecord
             'nama_fakultas' => 'Nama Fakultas',
         ];
     }
+    
+    public function formName()
+    {
+        return '';
+    }
 }

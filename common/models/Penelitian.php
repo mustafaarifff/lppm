@@ -89,4 +89,9 @@ class Penelitian extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Rak::className(), ['id_rak' => 'id_rak']);
     }
+
+    public function formName()
+    {
+        return '';
+    }
 }

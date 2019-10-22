@@ -41,4 +41,9 @@ class JenisJurnal extends \yii\db\ActiveRecord
             'nama_jenis_jurnal' => 'Jenis Jurnal',
         ];
     }
+    
+    public function formName()
+    {
+        return '';
+    }
 }

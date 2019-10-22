@@ -73,4 +73,9 @@ class Outcome extends \yii\db\ActiveRecord
     {
         return $this->hasOne(JenisJurnal::className(), ['id' => 'jenis_jurnal']);
     }
+    
+    public function formName()
+    {
+        return '';
+    }
 }
