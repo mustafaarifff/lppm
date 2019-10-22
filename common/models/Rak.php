@@ -41,4 +41,9 @@ class Rak extends \yii\db\ActiveRecord
             'nama_rak' => 'Nama Rak',
         ];
     }
+
+    public function formName()
+    {
+        return '';
+    }
 }

@@ -42,4 +42,9 @@ class Cluster extends \yii\db\ActiveRecord
             'nama_cluster' => 'Nama Cluster',
         ];
     }
+    
+    public function formName()
+    {
+        return '';
+    }
 }
